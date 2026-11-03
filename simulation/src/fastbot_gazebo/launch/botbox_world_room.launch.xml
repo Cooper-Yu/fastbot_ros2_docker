@@ -11,7 +11,8 @@
 
   <arg name="gazebo_version" default="11"/>
   <let name="world_path" value="$(find-pkg-share fastbot_gazebo)/worlds/$(var map_name).world" />
-  <let name="model_path" value="$(find-pkg-share fastbot_gazebo)/models::/usr/share/gazebo-$(var gazebo_version)/models" />
+  <!-- TODO(CP23-C012): Append the robot model search parent; preserve existing paths. -->
+  <let name="model_path" value="$(find-pkg-share fastbot_gazebo)/models:/usr/share/gazebo-$(var gazebo_version)/models:$(find-pkg-share fastbot_description)/.." />
   <let name="resource_path" value="/usr/share/gazebo-$(var gazebo_version)" />
   <let name="plugin_path" value="/usr/share/gazebo-$(var gazebo_version)" />
 
