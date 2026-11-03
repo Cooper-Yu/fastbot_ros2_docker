@@ -1,0 +1,789 @@
+{
+  "schema": 1,
+  "date": "2026-11-03",
+  "source_rosject": 1017054,
+  "source_root": "/home/user/ros2_ws/src/fastbot",
+  "git_head": "9723ef5635f0f9dbb29709d662b772f45c93b979",
+  "branch": "student",
+  "working_tree_dirty": true,
+  "purpose": "User-authorized private local course development; distribution permission not certified",
+  "files": [
+    {
+      "path": "fastbot_description/CMakeLists.txt",
+      "bytes": 998,
+      "sha256": "d7b26e61cb9cecc62193c83cde2f813412397cebb11dcd6b7b3687d81ad274ca",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/launch/fastbot.launch.py",
+      "bytes": 2224,
+      "sha256": "b7396f0e55ff8e81f13ca171c4ace2f7988364b5a6247f1dc56172a531859fa5",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/launch/fastbot_rviz.launch.py",
+      "bytes": 853,
+      "sha256": "721bf888e185322e0b3fc3736840cdf748494bb02f11196ab87a4b9bb0707c27",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/launch/robot_state_publisher.launch.py",
+      "bytes": 1943,
+      "sha256": "3b7d29fa632406295b328de1f50cd2a17438157132e467408ea12b39dd13530d",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/LG-NS-gripper.dae",
+      "bytes": 9280,
+      "sha256": "574d453daa7911b07bd3cc7b90e0a303eff22f7d56121cbc13a7e5569175782f",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/base_link.stl",
+      "bytes": 1445584,
+      "sha256": "71bbebf621cbc4277c913b85e94a6282808e4c283bd187fe5c5e543d9f70bcc1",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/boxbot_texture.png",
+      "bytes": 96,
+      "sha256": "11e23e8bf4726b4890e16c0a9473e9d7eb5294a06e70824498de47df5238c95e",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/camera.stl",
+      "bytes": 12284,
+      "sha256": "2fe51bd02779e0735dedc7e1f56755d79e585e239fc1b6ff183a2e817cba19ea",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/caster.stl",
+      "bytes": 86884,
+      "sha256": "8a0a2765d39e5a66a9d194c6e5f091f46fc60849f69131a5a95ee27d6e8a3305",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/imu.stl",
+      "bytes": 684,
+      "sha256": "9c9459969bd87750901fc319c5de292f9ca619ec20d74074d13d68bfa0f3f0b3",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_body.stl",
+      "bytes": 108584,
+      "sha256": "77196876531f16a2c380a5f561a3dc56c7f4428284e9762848bcfae97baf65d8",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_bottom.stl",
+      "bytes": 13084,
+      "sha256": "c6c091d5794fd414f71e5ad62cb1738eee955864e2b7ae1d56d6f86c89cbb8cd",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_motorend.stl",
+      "bytes": 12684,
+      "sha256": "d6b950bcf9e957e0c375151bc36e768a3fb0b4c79f2ec0f9162f3ca9a6345f82",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_top.stl",
+      "bytes": 13284,
+      "sha256": "2d17f74e4fab4a31825b3220481d3c17475b6a6656c61aff18cc1783bb2ea95a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_top_fastbot_1.dae",
+      "bytes": 36867,
+      "sha256": "421ea1aec29a20d57ed97cdc99271bbafe9b7f7a74175bd2d94b896a09e10fbf",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_top_fastbot_2.dae",
+      "bytes": 36860,
+      "sha256": "a32ff3e1fe98b1c2d18d880b17d223c31480793540991c7060ad6dd457103f1a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/lidar_top_fastbot_3.dae",
+      "bytes": 36872,
+      "sha256": "97170fd90fe4800502edc04d40c47ebd6535bb5151391a2d5d9bf6a42df95302",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/wheel_left.stl",
+      "bytes": 509484,
+      "sha256": "5ade5041977446621aac9e5bbf9262130f8304b8944c5cd32684805969117faf",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/meshes/wheel_right.stl",
+      "bytes": 509484,
+      "sha256": "7d297008b5ed262ffe3cfed2bb7c4029fee1bd0c85a4160d5017216e500e9015",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/urdf/fastbot.urdf",
+      "bytes": 10620,
+      "sha256": "1dcf88ba767bf58c3d605272d05680784936044b0856caa97da2b79f595c7b07",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/urdf/fastbot.xacro",
+      "bytes": 10602,
+      "sha256": "4083b58eb0a90c92635c5f9cc4bc808599bb52181af2ba59051350d5b731e797",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/urdf/fastbot_body.xacro",
+      "bytes": 12280,
+      "sha256": "5cdde46e0917579a7299431369577b2989b40e9d6b216cf2cd6bbf816c7f3d03",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/urdf/fastbot_multi.xacro",
+      "bytes": 464,
+      "sha256": "f1a6fd41b1177ca36db1a23f86cfb126e9a8033bb340af6254200f3fffd70dda",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/urdf/fastbot_multi_sim.xacro",
+      "bytes": 951,
+      "sha256": "a8bdd9f23df5f4a8fed950d26db2e197083b21e53b3269de22bf2bf214eec8d1",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/models/urdf/materials.xacro",
+      "bytes": 335,
+      "sha256": "8489da34c1b093a5521af650f0a66359eba4162b3d93e2a07d326126daaecc37",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/fastbot_chassis.stl",
+      "bytes": 3133984,
+      "sha256": "8b30a9ff4c9c7439000c63ffa9f974bd15ea2594e2ced8e0c3cac3d9aba685bf",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/fastbot_motor.stl",
+      "bytes": 275784,
+      "sha256": "df743e6ff1db46cf6bd36ca0046e050496a74c8e871208a7699b77e765093e9b",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/lslidar_n10.stl",
+      "bytes": 308884,
+      "sha256": "2ce594888b95dea00b06c7dc82ad0d860f00c08a903f6269ba29cb390f3aa13d",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/n10_v2.stl",
+      "bytes": 308884,
+      "sha256": "2ce594888b95dea00b06c7dc82ad0d860f00c08a903f6269ba29cb390f3aa13d",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/part_33.stl",
+      "bytes": 159784,
+      "sha256": "5a790a7d406bf9b3016835b209c674e46af90238d7c17c9fde07f8ca662a993a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/pololu_ball_caster.stl",
+      "bytes": 2675484,
+      "sha256": "2588073f699b14962135452c8b870aa7cdb598e63dd0efc0c3e371e28dca2361",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/raspicam.stl",
+      "bytes": 159784,
+      "sha256": "5a790a7d406bf9b3016835b209c674e46af90238d7c17c9fde07f8ca662a993a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/wheel_d65x25_v1.stl",
+      "bytes": 968284,
+      "sha256": "860e8a73c4ccfeeddc38f8ac7bd10e835d6745aeb7426c64f2f175a27908150b",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/onshape/assets/wheel_d65x25_v1__2.stl",
+      "bytes": 1662684,
+      "sha256": "00795ce9db92252f953ecd02b717e5cc25d85dc87b9fbc882043cdce4877df1a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/package.xml",
+      "bytes": 744,
+      "sha256": "25c9efa710fb19479ded5ab689333e2552dc161851a46bf06f262cb13311d3f6",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/rviz/fastbot.rviz",
+      "bytes": 8944,
+      "sha256": "bf06e63d996de9dc79945120450aae0eb6f2517c4de75d218b9aaa2f60b83419",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/rviz/fastbot_1.rviz",
+      "bytes": 8634,
+      "sha256": "98f4c06442bac858f907a2a2d0580260dcd1f0d09af9bd8e27c3205fe608b6ef",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/rviz/fastbot_2.rviz",
+      "bytes": 8634,
+      "sha256": "ddd4a753bdd3095f8f77c124255207b499ba6e9d7d4cc6f38815dcfc23cd6fb5",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_description/rviz/fastbot_3.rviz",
+      "bytes": 8634,
+      "sha256": "1ef863983cb715df0127fac80bfb912bd4c84a38de960bd3aa067af29d1b1168",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/CMakeLists.txt",
+      "bytes": 995,
+      "sha256": "af44330077d2be56f8a2bddbdcf9e13f064a89fed231e8f1953239c52db59f7f",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/gazebo/fastbot_materials.gazebo",
+      "bytes": 1412,
+      "sha256": "1bfaaa797aa9bd350fb532b5fa2a56a67deb3e9f484434345cdd7dcd55402c34",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/gazebo/fastbot_materials_multi.gazebo",
+      "bytes": 1747,
+      "sha256": "4514ec43ff24247ea8006aa360e933693f8814af2978a88c0bc9d1bdbf76c256",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/gazebo/fastbot_physics.gazebo",
+      "bytes": 1873,
+      "sha256": "3a69a6d2997620002a80d1a28e3dbe550aa7414461324e67e4f380ee580379ef",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/gazebo/fastbot_physics_multi.gazebo",
+      "bytes": 1446,
+      "sha256": "2bb790e259bc55385b4ae64cc4632bc12af3d23d01289db41ffa47cc4f810e42",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/gazebo/fastbot_plugins.gazebo",
+      "bytes": 4009,
+      "sha256": "705fe59e51e7e7e8fbfde2c39c7b4bb5b49b2be4630906f063eb9628baabc046",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/gazebo/fastbot_plugins_multi.gazebo",
+      "bytes": 3804,
+      "sha256": "b4ec31136523316af023964ab1448db2e234a362fb53b65a938c741d491f0ce1",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/botbox_room.launch.py",
+      "bytes": 1283,
+      "sha256": "f8c39aee0315468364c6f41b271b6e6f3d51e49e45a62151a39634ca7da358e9",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/botbox_warehouse.launch.py",
+      "bytes": 1260,
+      "sha256": "b85128d616ba279c730c2c633acc43be2f60e6d18e98b318812868a0df67c800",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/botbox_world.launch.xml",
+      "bytes": 1812,
+      "sha256": "1fb09755ee4ea8545dac7526365b3c41f3e9a0f8be8798ecfeecde9e7ac6ee2c",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/botbox_world_room.launch.xml",
+      "bytes": 2115,
+      "sha256": "17db8499df52484f2669c9ce2e7f17f665d7f319bb07ed5fa9391eec918dde43",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/one_fastbot_room.launch.py",
+      "bytes": 1282,
+      "sha256": "b9c686667f9124dfc263cf7c2292df1f985fa3121bce48c912dfc0e4191d7202",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/one_fastbot_warehouse.launch.py",
+      "bytes": 1276,
+      "sha256": "3b5af62f687f8d417df1900f9070dd51a9fc0a49c51b14497cd9f633b774ebcd",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/spawn.launch.xml",
+      "bytes": 1160,
+      "sha256": "4bd3cac29b6dcc100c64eafff9bab22b3379d6e24ff80666feaf5ac8b050f273",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/spawn_3_fastbot.launch.xml",
+      "bytes": 2331,
+      "sha256": "6a9a80fa294967bb7e88e4900830733d5e567ec37fb2f5b2fd92d0209f035240",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/spawn_fastbot.launch.xml",
+      "bytes": 588,
+      "sha256": "d60613f6d3afed1832de0656901b959cdfd34de7dca25a66f224a5b0cbce3944",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/launch/spawn_in_gazebo.launch.py",
+      "bytes": 2702,
+      "sha256": "b83ba08b00a08bea8f462449d29cce7b880d492cca3cf6c89ed097c790056ae4",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/background_space/meshes/Scene_-_Root_diffuse.jpeg",
+      "bytes": 1981453,
+      "sha256": "6762c314e6b835bc7247d76fa9ac09a1b17c0576984a3e321de690ed56edb93c",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/background_space/meshes/space.dae",
+      "bytes": 495116,
+      "sha256": "c7249cfb15de6ee3de91dc5b4321931f2a68a21a6bf71d7c8c5f85400b4a6639",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/background_space/model.config",
+      "bytes": 312,
+      "sha256": "b581b8fb015aa36e1dd4895e0604fccace9211481576565f47d51e0e1c422226",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/background_space/model.sdf",
+      "bytes": 543,
+      "sha256": "3a24998d76ce96ca8591817e177d19ca370951fa7317c9ca98ef1efa44d0cf67",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/botbox_env/meshes/botbox_env.dae",
+      "bytes": 15656249,
+      "sha256": "476a0798c98f97df048073dde766baa36f924b0016cf1f3a8dd5a1c6441af499",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/botbox_env/meshes/botbox_env_col.stl",
+      "bytes": 6084,
+      "sha256": "afe697efdaebea8346f09ff249433ee3bbe3a068973f33b87c9ab7ef8edad6cf",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/botbox_env/meshes/floortexture.jpg",
+      "bytes": 2104842,
+      "sha256": "84f8b48d85f3e94dce3ebc325271da81da0e17e2c58066fcc9505634223faf8a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/botbox_env/meshes/texture_botboxenv.png",
+      "bytes": 95,
+      "sha256": "83876caa4b87235c2de5fdb9f6cbe49bd07c37aa4de340dd11c2c8795eade0cc",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/botbox_env/model.config",
+      "bytes": 313,
+      "sha256": "c573cbc17abb820a1b8cee918de50ddc03bcaab7ef44b3b3bd6f75cc11b214d9",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/botbox_env/model.sdf",
+      "bytes": 896,
+      "sha256": "cfbe462ad9c90607bdd208d2c14285d1125632685823528d72448fb55d018afa",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/box_room/meshes/box_room.dae",
+      "bytes": 701788,
+      "sha256": "7f560ed61bf0f7a342f6bdd02812d7d29995ff854a23b9f29c4dde6429415c6f",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/box_room/meshes/chambre.png",
+      "bytes": 289,
+      "sha256": "405c8d99db86adc802d6e9187d87889d606fbcd38e34eed0356d373a41d26574",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/box_room/model.config",
+      "bytes": 361,
+      "sha256": "de2941cd0e10f93f7c65f75d63aa7bf48747a10d363b333ffb053dbde8dd37c9",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/box_room/model.sdf",
+      "bytes": 887,
+      "sha256": "a672714ae7bcec741738f502ef8624ac7dfdb6a297270bf193072d26e8d3ed20",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/cozy_room/meshes/Baked1_baseColor.png",
+      "bytes": 1285614,
+      "sha256": "b7809a62f98c9c2d72fbd712a93e866e278e838c7f04157b97fc0afb6d9f2afb",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/cozy_room/meshes/Baked_baseColor.png",
+      "bytes": 1103166,
+      "sha256": "d0b4af1436fd58a8760932407648a9096819dc27c1fd2de7caad00240f7d6238",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/cozy_room/meshes/cozy_room.dae",
+      "bytes": 7693595,
+      "sha256": "ab45a3e6ba385cce0e2e8255f04b161e2d242b6dc98cec27d041f8e21c7e1406",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/cozy_room/model.config",
+      "bytes": 338,
+      "sha256": "0c147b41649e43ed80f198c9db5ba8a120cd4658e14bd0569e1669a32b4716bf",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/cozy_room/model.sdf",
+      "bytes": 868,
+      "sha256": "1f5e5bc17b70416af20c0a7f61f825364f85e6c4eab426fc2ce09438e92a48bc",
+      "mode": 416
+    },
+    {
+      "path": "fastbot_gazebo/models/grasping_cube/meshes/grasping_cube.dae",
+      "bytes": 116557,
+      "sha256": "dea997fe68270f6ea5a379edf929b1657808a46bf23884067fecaf9a5e144036",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/grasping_cube/meshes/grasping_cube_ar.dae",
+      "bytes": 303730,
+      "sha256": "b9719b122e7a19fb91ef07d2dfc5c5d5ac9f406701ad314409eee799f0751541",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/grasping_cube/meshes/marker_0005.png",
+      "bytes": 1005,
+      "sha256": "009ee20efbfbad6ba7d76274ca82fc0bff583987091e05bb0bd6285cf4549b0b",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/grasping_cube/model.config",
+      "bytes": 328,
+      "sha256": "e56c1739c321c290043fff657b6a2354bf81bf395dd6b919bc8fb6e0b5aa61a7",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/grasping_cube/model.sdf",
+      "bytes": 866,
+      "sha256": "1a473c96c313c46f8b1f9e5b72851c2aa63aaa136acec1654f11814416ba46fd",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/ground_plane_invisible/model-1_2.sdf",
+      "bytes": 528,
+      "sha256": "ffb487e5aced81ff896103efcf115cbd2755ed9247da9f1aef7eb4836a956145",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/ground_plane_invisible/model-1_3.sdf",
+      "bytes": 522,
+      "sha256": "9264d30055995f14228c0492e1d578c443fdfb28bb7cae36d815dfd0a6eddd30",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/ground_plane_invisible/model-1_4.sdf",
+      "bytes": 521,
+      "sha256": "3a62f5bf65a4913d2f986cc5267472499c69b9d2f509e31b2d2f004a7a8e9635",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/ground_plane_invisible/model.config",
+      "bytes": 429,
+      "sha256": "6038958d701b42466c1a22ccbdee836a11a76bcc70841c8acbbdfbe89974857c",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/ground_plane_invisible/model.sdf",
+      "bytes": 539,
+      "sha256": "932abe2678f8293faf790f570e93473948fa35f8d68f8b925262aa75024a4284",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_fan/materials/scripts/image_fan.material",
+      "bytes": 285,
+      "sha256": "9a9bda3a6309eae3c0a8cd4ea32ebd42bcc8d7cd5537a69254673266e3891aab",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_fan/materials/textures/fan.jpg",
+      "bytes": 35528,
+      "sha256": "38886bf303d4aa9e10693113c7dbb2f209ec0afd8c18fdfecf2857e7d57e7225",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_fan/model.config",
+      "bytes": 320,
+      "sha256": "34033bb3b9a1198bdad0162a0840011f0997b9ef7fc3cc8e5e21ddde07a221c6",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_fan/model.sdf",
+      "bytes": 614,
+      "sha256": "8400ee9e71fde327fc5c61f3821573dad8637300ddcf542f7b27ebb9f4a58b04",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_floor/materials/scripts/image_floor.material",
+      "bytes": 305,
+      "sha256": "e03b0572b566ae409141dedce2ea2cce4d7f58f46d73f7dde8e41b04a38ef4eb",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_floor/materials/textures/tortoisebot_warehouse.png",
+      "bytes": 1489081,
+      "sha256": "ff3e7654356e2ff0f6dd33a1188dd039cc262eade1b422849bf724c7e81c3ba8",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_floor/materials/textures/tortoisebot_warehouse_pre.png",
+      "bytes": 182909,
+      "sha256": "267d46a152ee3b4aab79b48d656c6223838f777838976f78a62a2a04025320ca",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_floor/model.config",
+      "bytes": 324,
+      "sha256": "3e55ad4cb786ee1921767dfea6b98a00d915812d88ba49c99cbc99edd6c75cad",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_floor/model.sdf",
+      "bytes": 620,
+      "sha256": "f6dba898207432899f2c6f386d07bafdf1ff32111a6200ef4b50232134791317",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_pallet_rack/materials/scripts/image_fan.material",
+      "bytes": 300,
+      "sha256": "256b1819c014ea883fae1f9b16f5dd45c80d696ed1b23158a21af009a41d2994",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_pallet_rack/materials/textures/pallet-rack.jpg",
+      "bytes": 153566,
+      "sha256": "1bea5333679ffb1521820afd4ffe9adf12991810da071c43495f3f2d3bae364a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_pallet_rack/model.config",
+      "bytes": 336,
+      "sha256": "3ddb3a5a002fae0f8ac0c072467994dcb9679675549541524ff5e756a64dd4a4",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_pallet_rack/model.sdf",
+      "bytes": 644,
+      "sha256": "7b0c0e97130b4864fb1c97254c0960531282be2a4c956f41d94dde16e31f9a69",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_trailer_dock/materials/scripts/image_trailer_dock.material",
+      "bytes": 302,
+      "sha256": "7e6d43134c0bf234e9acbad1e3f64365eed14908380a7bdb3274eb7c4fde170f",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_trailer_dock/materials/textures/loading-dock.jpg",
+      "bytes": 32926,
+      "sha256": "39ddf73debeba6adf8ec6b2d7cb28e46cc5f69d1be78f91f9c3eb94786c81d43",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_trailer_dock/model.config",
+      "bytes": 338,
+      "sha256": "e9093e18cdc6d548752ce6dc966beb38c8018b1551c30d2454e9d6d053c36765",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/image_trailer_dock/model.sdf",
+      "bytes": 649,
+      "sha256": "096c81403f94a370cb4b8d68d23b4777ed775f98dd497928fb46990fe64f7745",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/simple_voxel_room/meshes/living_room_final.png",
+      "bytes": 307,
+      "sha256": "f6617abc9a0ed251e80535af8769453a4d56c78cb49521e4faded13b73b59567",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/simple_voxel_room/meshes/room2final.png.001.png",
+      "bytes": 255,
+      "sha256": "985b7ca7eb594e8fbfc96121686e2d64ad75969009707ae0a486d4ae5c2a4b74",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/simple_voxel_room/meshes/simple_voxel_room_fix.dae",
+      "bytes": 178727,
+      "sha256": "abad3b0ea9f023c7a755a38ead3ecdb7ff5d67f4ff280a37a425b1b10d848640",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/simple_voxel_room/model.config",
+      "bytes": 444,
+      "sha256": "9b8e1eefed2becb66d4e83c284954e963ffc593188af657c3b2d1d9ab2174d67",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/simple_voxel_room/model.sdf",
+      "bytes": 923,
+      "sha256": "6b6296ee8efdc5a85934cefa5831a5a4a603957e42c4aa28faef1ab5befd8d51",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/small_indoor_scenario/meshes/small_indoor_scenario.dae",
+      "bytes": 27864,
+      "sha256": "79908042364b21ce6017c31be5d78a9937ea03227eaf81413046c83ebb174b2b",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/small_indoor_scenario/model.config",
+      "bytes": 309,
+      "sha256": "6be2a60460b20b2d2787db9dd2bc552308bcfe07243e851b27e271d7a32f4f81",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/small_indoor_scenario/model.sdf",
+      "bytes": 928,
+      "sha256": "27d04734ddd249beff8add1fe67b54282d08ab18daf57f1754a98dad4c133a4d",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/walls/model.config",
+      "bytes": 234,
+      "sha256": "6fb273657f06864be6d8d37fc1f268aecbb95df5a0d84205a47fe7781890d52b",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/models/walls/model.sdf",
+      "bytes": 6394,
+      "sha256": "1d8ea5a99bbb5bd888c0476460d03bdb285b5d3a1f572ec484a62f6d1a736897",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/package.xml",
+      "bytes": 605,
+      "sha256": "bd6936f70892acf70721a66f46b8964bfdea7810fe0707271ee3b146a434ad78",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/worlds/botbox_warehouse.world",
+      "bytes": 3825,
+      "sha256": "1637f183d28e11365ee1e86af37e51860b13206700588076109d2d4dc0114391",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/worlds/box_bot_room.world",
+      "bytes": 276,
+      "sha256": "a6076a0341b91c89fe23cb2f1c8d4005a6c7b184e98ee992b23c5a75467c115a",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/worlds/colision_avoidance.world",
+      "bytes": 3955,
+      "sha256": "3ecb951d87ac96ace42ed126cc010cf003f03a8bca257790c0e2e36afd9c5f20",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/worlds/generated_world.world",
+      "bytes": 965,
+      "sha256": "c5aa382f325702ed491f3d10fec644920caa834977e88ae9f6fa59638310cb67",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/worlds/room2.sdf",
+      "bytes": 31745,
+      "sha256": "10046a8f556e947aa16b2612e8061f15e6a45eea903643e3c9c2618dc3cd1837",
+      "mode": 420
+    },
+    {
+      "path": "fastbot_gazebo/worlds/small_indoor_scenario.world",
+      "bytes": 1132,
+      "sha256": "8f6da9fc6e760206ff18e2163d7d93ae9c35e7b71d351e6a4e068abd61c777bd",
+      "mode": 420
+    }
+  ],
+  "excluded": [
+    "fastbot_description/onshape/api-keys.sh",
+    "fastbot_description/onshape/assets/fastbot_chassis.part",
+    "fastbot_description/onshape/assets/fastbot_motor.part",
+    "fastbot_description/onshape/assets/lslidar_n10.part",
+    "fastbot_description/onshape/assets/n10_v2.part",
+    "fastbot_description/onshape/assets/part_33.part",
+    "fastbot_description/onshape/assets/pololu_ball_caster.part",
+    "fastbot_description/onshape/assets/raspicam.part",
+    "fastbot_description/onshape/assets/wheel_d65x25_v1.part",
+    "fastbot_description/onshape/assets/wheel_d65x25_v1__2.part",
+    "fastbot_description/onshape/config.json",
+    "fastbot_description/onshape/fastbot-student-simplified.step",
+    "fastbot_gazebo/scripts/start_sim.sh"
+  ],
+  "directories": [
+    "fastbot_description",
+    "fastbot_description/launch",
+    "fastbot_description/models",
+    "fastbot_description/models/meshes",
+    "fastbot_description/models/urdf",
+    "fastbot_description/onshape",
+    "fastbot_description/onshape/assets",
+    "fastbot_description/rviz",
+    "fastbot_gazebo",
+    "fastbot_gazebo/gazebo",
+    "fastbot_gazebo/launch",
+    "fastbot_gazebo/models",
+    "fastbot_gazebo/models/background_space",
+    "fastbot_gazebo/models/background_space/meshes",
+    "fastbot_gazebo/models/botbox_env",
+    "fastbot_gazebo/models/botbox_env/meshes",
+    "fastbot_gazebo/models/box_room",
+    "fastbot_gazebo/models/box_room/meshes",
+    "fastbot_gazebo/models/cozy_room",
+    "fastbot_gazebo/models/cozy_room/meshes",
+    "fastbot_gazebo/models/grasping_cube",
+    "fastbot_gazebo/models/grasping_cube/meshes",
+    "fastbot_gazebo/models/ground_plane_invisible",
+    "fastbot_gazebo/models/image_fan",
+    "fastbot_gazebo/models/image_fan/materials",
+    "fastbot_gazebo/models/image_fan/materials/scripts",
+    "fastbot_gazebo/models/image_fan/materials/textures",
+    "fastbot_gazebo/models/image_floor",
+    "fastbot_gazebo/models/image_floor/materials",
+    "fastbot_gazebo/models/image_floor/materials/scripts",
+    "fastbot_gazebo/models/image_floor/materials/textures",
+    "fastbot_gazebo/models/image_pallet_rack",
+    "fastbot_gazebo/models/image_pallet_rack/materials",
+    "fastbot_gazebo/models/image_pallet_rack/materials/scripts",
+    "fastbot_gazebo/models/image_pallet_rack/materials/textures",
+    "fastbot_gazebo/models/image_trailer_dock",
+    "fastbot_gazebo/models/image_trailer_dock/materials",
+    "fastbot_gazebo/models/image_trailer_dock/materials/scripts",
+    "fastbot_gazebo/models/image_trailer_dock/materials/textures",
+    "fastbot_gazebo/models/simple_voxel_room",
+    "fastbot_gazebo/models/simple_voxel_room/meshes",
+    "fastbot_gazebo/models/small_indoor_scenario",
+    "fastbot_gazebo/models/small_indoor_scenario/meshes",
+    "fastbot_gazebo/models/walls",
+    "fastbot_gazebo/scripts",
+    "fastbot_gazebo/worlds"
+  ]
+}

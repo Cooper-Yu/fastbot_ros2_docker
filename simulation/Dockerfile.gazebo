@@ -1,0 +1,36 @@
+# CP23 Task1: Gazebo image
+# TODO(CP23-C001): Choose the course-compatible ROS base image.
+# Write one FROM instruction below; consult ../environment.lock.json.
+FROM ros:humble-ros-base-jammy
+
+# TODO(CP23-C002): Update the package index and install Gazebo ROS packages.
+# Add one RUN instruction below. See attempt.md for the package and command hints.
+# TODO(CP23-C004): Add the robot model expansion dependency to this install list.
+RUN apt-get update && apt-get install -y ros-humble-gazebo-ros-pkgs ros-humble-xacro
+# TODO(CP23-C003): Copy the prepared course source into the image.
+# Source paths are relative to the project root. See attempt.md for the target.
+COPY simulation/src/ /ros2_ws/src/
+
+# TODO(CP23-C005): Set the working directory for subsequent workspace commands.
+# Write one WORKDIR instruction below; see attempt.md.
+WORKDIR /ros2_ws
+
+# TODO(CP23-C006): Add the workspace build command on the next continued line.
+# Coach support: load ROS before the learner-owned build command.
+RUN . /opt/ros/humble/setup.sh && \
+    colcon build
+
+# TODO(CP23-C008): Copy the startup preparation script into the image.
+# Source is relative to the project root; destination is listed in attempt.md.
+COPY simulation/entrypoint_gazebo.sh /usr/local/bin/entrypoint_gazebo.sh
+
+# Coach support: make the copied startup script executable.
+RUN chmod +x /usr/local/bin/entrypoint_gazebo.sh
+
+# TODO(CP23-C009): Set the image startup program to the copied preparation script.
+# Use the bracket-and-double-quote form described in attempt.md.
+ENTRYPOINT ["/usr/local/bin/entrypoint_gazebo.sh"]
+
+# TODO(CP23-C010): Set the default course room launch command.
+# Keep the program and each argument as separate double-quoted items.
+CMD ["ros2", "launch", "fastbot_gazebo", "one_fastbot_room.launch.py"]

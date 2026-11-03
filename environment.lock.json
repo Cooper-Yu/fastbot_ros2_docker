@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "task": "CP23-ENV-SOURCES-001",
+  "date": "2026-10-25",
+  "state": "BASE_RUNTIME_VERIFIED_TASK1_NOT_STARTED",
+  "authorization": "2026-11-03 user: direct coaching, engineering preparation then Task1 then Task2; workflow not used",
+  "target": {
+    "os": "Ubuntu 22.04 Jammy",
+    "ros": "ROS 2 Humble",
+    "simulator": "Gazebo Classic 11",
+    "simulator_evidence": "official rosjects branch botbox_world.launch.xml; exact course room asset still unverified",
+    "host_platform": "linux/amd64",
+    "robot_platform": "UNKNOWN_REQUIRES_ACTUAL_FASTBOT_CHECK",
+    "cloud_snapshot_ros": "Galactic live verified 2026-11-03 in rosject1017054"
+  },
+  "base_image": {
+    "repository": "docker.io/library/ros",
+    "tag": "humble-ros-base-jammy",
+    "index_digest": "sha256:566b87e6dfc48392189a9c32e594e84060fa9948de93b04e536f39475a1f6963",
+    "amd64_digest": "sha256:fea7dd1577580a53209dc2e9456cd8d6ef13704a09a8f12914e0867f6861ea9a",
+    "arm64_digest": "sha256:49472ce5ac155365329a6366ea332610efcdb613de73c802299ac7bc6cd4454d",
+    "registry_metadata": "https://hub.docker.com/v2/repositories/library/ros/tags/humble-ros-base-jammy",
+    "amd64_local_metadata_present": true,
+    "runtime_verified": true,
+    "pulled_this_run": false
+  },
+  "asset_source": {
+    "repository": "https://bitbucket.org/theconstructcore/fastbot",
+    "official_provenance": "CP21 course links theconstructcore/fastbot docker/docs/install_ubuntu_server.md",
+    "is_private": false,
+    "default_branch": "docker",
+    "default_revision": "5dee1f91df5942248d2e9dc5c49505cda91b99ac",
+    "sim_candidate_branch": "rosjects",
+    "sim_candidate_revision": "a4513c85a6c29623c105ed5fa8a946f2ce06b612",
+    "edu_revision": "411889511286470ee7b52fa8dfbfcbfe7ac09891",
+    "legacy_revision": "93c8195d3cb2057551760b8acbef603a10544786",
+    "exact_course_match": false,
+    "course_launch": "fastbot_gazebo/one_fastbot_room.launch.py",
+    "candidate_launch": "fastbot_gazebo/one_fastbot_warehouse.launch.py",
+    "package_license": "TODO: License declaration",
+    "local_copy_status": "RESOURCE_LIBRARY_ARCHIVE_PRESENT_LOCAL_ADAPTER_COURSE_MATCH_UNVERIFIED",
+    "required_submodule": "theconstructcore/attach_gazebo; revision/license NOT_VERIFIED",
+    "slam": "fastbot_slam/cartographer.launch.py: exact learner/course source missing",
+    "webapp": "CP22 fastbot_webapp: learner artifact not supplied; do not substitute student solutions"
+  },
+  "gates": {
+    "course_rosject_link": "CONFIRMED_BY_USER_AND_OPENED_1017054",
+    "asset_revision_and_permission": "COURSE_SOURCE_ENTRY_IDENTIFIED_DISTRIBUTION_REVIEW_PENDING",
+    "test_isolation": "NOT_QUALIFIED_PER_CURRENT_COMPONENT_DOCS",
+    "framework_config_approval": "NOT_APPLICABLE_TO_DIRECT_COACHING",
+    "docker_backing_free": "UNKNOWN",
+    "container_create": "BASE_METADATA_PROBE_COMPLETED_AND_CLEANED",
+    "build": "NOT_RUN",
+    "sim": "NOT_RUN",
+    "gui": "NOT_RUN",
+    "gpu": "NOT_RUN",
+    "official": "NOT_RUN"
+  },
+  "latest_local_audit": {
+    "date": "2026-10-31",
+    "report": "local_feasibility_audit_20261031.md",
+    "resource_profile": "Galactic/Focal/Classic11",
+    "archive_hash_checked": true,
+    "runtime_repeated_this_turn": false,
+    "integration": "NOT_RUN",
+    "hardware": "NOT_RUN"
+  },
+  "current_course_source": "E:/Obsidian/机器人书房/Robot Developer Masterclass/23 机器人 Docker 基础/实践项目/实践项目 23：机器人 Docker 基础/Checkpoint 23 — 机器人 Docker.md",
+  "current_mode": "DIRECT_COACHING",
+  "course_rosject_source": {
+    "local_import": "NOT_STARTED",
+    "entry_verified": true,
+    "humble_runtime": "NOT_RUN",
+    "manifest": "course_assets.lock.json"
+  }
+}

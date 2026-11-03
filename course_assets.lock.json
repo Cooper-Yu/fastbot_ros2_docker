@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-03",
+  "rosject": "https://app.theconstruct.ai/desktop/rosject/1017054",
+  "cloud_ros": "galactic",
+  "source_root": "/home/user/ros2_ws/src/fastbot",
+  "git_revision": "9723ef5635f0f9dbb29709d662b772f45c93b979",
+  "git_branch": "student",
+  "working_tree_dirty": true,
+  "target": "Ubuntu22.04 ROS2Humble GazeboClassic11",
+  "packages": ["fastbot_description", "fastbot_gazebo"],
+  "package_file_counts": {
+    "fastbot_gazebo": 81,
+    "fastbot_description": 51
+  },
+  "entry": "fastbot_gazebo/launch/one_fastbot_room.launch.py",
+  "world": "fastbot_gazebo/worlds/colision_avoidance.world",
+  "room_model": "fastbot_gazebo/models/simple_voxel_room",
+  "plugins": [
+    "libgazebo_ros_camera.so",
+    "libgazebo_ros_diff_drive.so",
+    "libgazebo_ros_ray_sensor.so"
+  ],
+  "license": "TODO: License declaration",
+  "state": "LOCAL_COURSE_ASSET_SNAPSHOT_VERIFIED",
+  "runtime": "NOT_RUN",
+  "local_resource_fallback": "No longer needed as the default scene: real course room source found; existing fallback resources unchanged",
+  "files": {
+    "fastbot_gazebo/worlds/colision_avoidance.world": "3ecb951d87ac96ace42ed126cc010cf003f03a8bca257790c0e2e36afd9c5f20",
+    "fastbot_gazebo/launch/botbox_world_room.launch.xml": "17db8499df52484f2669c9ce2e7f17f665d7f319bb07ed5fa9391eec918dde43",
+    "fastbot_gazebo/launch/spawn_fastbot.launch.xml": "d60613f6d3afed1832de0656901b959cdfd34de7dca25a66f224a5b0cbce3944",
+    "fastbot_gazebo/launch/one_fastbot_room.launch.py": "b9c686667f9124dfc263cf7c2292df1f985fa3121bce48c912dfc0e4191d7202"
+  },
+  "local_snapshot": {
+    "archive_sha256": "52a6ac67dccf0f15bcec3bfc7f340f16e2d030f19c016bfd7e4c7cb12b03f66e",
+    "files": 119,
+    "archive": "runtime_logs/assets_snapshot_20261103/cp23_course_assets_20261103_05a13af7.tar.gz",
+    "humble_runtime": "NOT_RUN",
+    "python_ast_parsed": 8,
+    "manifest": "course_asset_manifest.json",
+    "source": "simulation/src",
+    "xml_parsed": 54,
+    "excluded": 13,
+    "permission_adjustments": "runtime_logs/assets_snapshot_20261103/permission-adjustments.json",
+    "copy_probe": {
+      "nonroot": true,
+      "cleanup": "REMOVED",
+      "probe_exit": 0,
+      "full_learner_dockerfile_build": "NOT_RUN",
+      "image": "sha256:9fb4cff56dc8ecf6f0fb9a9a591c7d10ae0d2f3aa918d73c0172b7595f6a9d23",
+      "files_verified": 119,
+      "run": "9199f1e4a8e7"
+    }
+  }
+}
