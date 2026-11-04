@@ -1,0 +1,17 @@
+# CP23 Task1: Web application image
+# TODO(CP23-C024): Choose the ROS 2 Humble base for the Web/rosbridge container.
+# Add one FROM instruction below; consult Dockerfile.slam or environment.lock.json.
+FROM ros:humble-ros-base-jammy
+# TODO(CP23-C025): Install the Web runtime dependencies during the image build.
+# Add one RUN instruction below; see attempt.md for the package names.
+RUN apt-get update && apt-get install -y ros-humble-rosbridge-server python3
+
+# Coach support (CP23-C026): reuse the reviewed COPY pattern for browser assets.
+COPY simulation/webapp/fastbot_webapp/ /webapp/
+
+# Coach support: reuse the reviewed script COPY, permission, and ENTRYPOINT wiring.
+COPY simulation/entrypoint_webapp.sh /usr/local/bin/entrypoint_webapp.sh
+RUN chmod +x /usr/local/bin/entrypoint_webapp.sh
+# Coach support: check both local endpoints before declaring startup ready.
+COPY simulation/check_web_services.py /usr/local/bin/check_web_services.py
+ENTRYPOINT ["/usr/local/bin/entrypoint_webapp.sh"]

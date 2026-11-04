@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src ws://127.0.0.1:* ws://localhost:* ws://[::1]:* wss://127.0.0.1:* wss://localhost:* wss://[::1]:*; img-src 'self' blob: data:; object-src 'none'; base-uri 'none'">
+  <title>FastBot 独立参考界面</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./rosbridge.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>FastBot · 独立参考实现</h1>
+    <p>本地隔离仿真 · 正式课程验收未完成 · 请勿连接硬件。</p>
+    <form id="connection-form">
+      <label for="bridge-url">本机 ROSbridge</label>
+      <input id="bridge-url" type="url" value="ws://127.0.0.1:9226" required spellcheck="false" autocomplete="off">
+      <button id="connect" type="submit">连接</button>
+      <button id="disconnect" type="button" disabled>停车并断开</button>
+    </form>
+    <div class="statuses" role="status" aria-live="polite">
+      <span>连接：<output id="connection-status">disconnected</output></span>
+      <span>导航服务：<output id="nav-readiness">unknown / stale</output></span>
+      <span>Action：<output id="action-status">unknown / stale</output></span>
+      <span>真实结果码：<output id="result-code">—</output></span>
+    </div>
+    <p id="notice" role="alert">当前为界面与传输层交付；app.js/renderers.js尚待后续步骤提供，按钮保持禁用。</p>
+  </header>
+  <main>
+    <section class="panel map-panel" aria-labelledby="map-title">
+      <h2 id="map-title">地图 · 简化三维机器人</h2>
+      <div id="map-stage" class="map-stage">
+        <canvas id="map-canvas" width="720" height="480" aria-label="实际OccupancyGrid地图"></canvas>
+        <canvas id="robot-canvas" width="720" height="480" aria-label="地图坐标中的WebGL机器人"></canvas>
+      </div>
+      <p>地图：<output id="map-status">stale / 无数据</output> · TF位姿：<output id="pose-status">stale / 无数据</output></p>
+      <p>WebGL立方体为简化几何模型，不是URDF保真呈现；无有效map位姿不得显示定位就绪。</p>
+    </section>
+    <section class="panel" aria-labelledby="camera-title">
+      <h2 id="camera-title">相机</h2>
+      <canvas id="camera-canvas" width="640" height="480" aria-label="机器人相机图像"></canvas>
+      <p id="camera-status" role="status">stale / 无数据</p>
+      <p>原始图像经ROSbridge传输，带宽较高；最多2Hz，仅支持rgb8、bgr8、mono8。</p>
+    </section>
+    <section class="panel" aria-labelledby="telemetry-title">
+      <h2 id="telemetry-title">实测遥测</h2>
+      <dl>
+        <dt>线速度 / m·s⁻¹</dt><dd id="linear-speed">— / stale</dd>
+        <dt>角速度 / rad·s⁻¹</dt><dd id="angular-speed">— / stale</dd>
+        <dt>map位置 / m</dt><dd id="map-position">— / stale</dd>
+        <dt>map航向 / rad</dt><dd id="map-heading">— / stale</dd>
+      </dl>
+      <p>速度仅取/fastbot_1/odom；地图位姿仅取/web_nav/pose。</p>
+    </section>
+    <section class="panel" aria-labelledby="manual-title">
+      <h2 id="manual-title">按住驾驶</h2>
+      <fieldset id="manual-controls" disabled>
+        <legend>无导航活动且状态新鲜时才允许</legend>
+        <button id="joystick" class="joystick" type="button" aria-label="按住并拖动驾驶；松开停车">按住拖动</button>
+        <button id="stop-manual" type="button">手动零速</button>
+      </fieldset>
+      <p>10Hz；|v| ≤ 0.15m/s，|ω| ≤ 0.6rad/s。断线依赖服务器watchdog，非硬件急停。</p>
+    </section>
+    
+    <section class="panel" aria-labelledby="waypoint-title">
+      <h2 id="waypoint-title">用户标定目标</h2>
+      <form id="waypoint-form">
+        <fieldset id="waypoint-controls" class="coordinate-fields" disabled>
+          <legend>仅保存用户输入；保存不发送导航目标</legend>
+          <label>名称<input id="waypoint-name" maxlength="48" required></label>
+          <label>X / m<input id="waypoint-x" type="number" step="any" required></label>
+          <label>Y / m<input id="waypoint-y" type="number" step="any" required></label>
+          <label>Yaw / rad<input id="waypoint-yaw" type="number" step="any" required></label>
+          <button type="submit">保存目标</button>
+        </fieldset>
+      </form>
+      <div id="waypoint-list" class="waypoint-list" aria-label="保存的目标按钮"></div>
+      <button id="cancel-navigation" type="button" disabled>请求取消真实导航</button>
+      <p>无预设坐标；发布目标不等于接受或到达。取消须等待真实Action终态。</p>
+    </section>
+  </main>
+  <footer><details class="initial-settings"><summary>初始定位设置</summary><div class="initial-popup">
+      <h2 id="initial-title">显式设置地图初始位姿</h2>
+      <form id="initial-pose-form">
+        <fieldset id="initial-pose-controls" class="coordinate-fields" disabled>
+          <legend>map坐标；不会自动定位或宣称就绪</legend>
+          <label>X / m<input id="initial-x" type="number" step="any" required></label>
+          <label>Y / m<input id="initial-y" type="number" step="any" required></label>
+          <label>Yaw / rad<input id="initial-yaw" type="number" step="any" required></label>
+          <button type="submit">发布初始位姿</button>
+        </fieldset>
+      </form>
+    </div></details>本地参考实现 · 正式课程验收未完成</footer>
+  <noscript>必须启用JavaScript；当前没有连接或运动。</noscript>
+</body>
+</html>

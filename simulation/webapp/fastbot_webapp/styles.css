@@ -1,0 +1,76 @@
+:root { color-scheme: dark; font: 15px/1.45 system-ui, sans-serif; background: #101820; color: #e4edf4; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header, main, footer { max-width: 1440px; margin: auto; padding: 12px 20px; }
+h1 { font-size: 1.4rem; margin: 0 0 6px; }
+h2 { font-size: 1.05rem; margin: 0 0 10px; }
+p { margin: 7px 0; font-size: .88rem; color: #b8cbd8; }
+form, .statuses, .waypoint-list { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+label { display: flex; flex-direction: column; gap: 4px; }
+input, button { font: inherit; border: 1px solid #608195; border-radius: 5px; padding: 7px 10px; }
+input { background: #101820; color: inherit; min-width: 0; }
+button { background: #234c63; color: #fff; cursor: pointer; }
+button:hover:not(:disabled) { background: #306680; }
+button:disabled, fieldset:disabled button { opacity: .45; cursor: not-allowed; }
+:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+#bridge-url { flex: 1; min-width: 220px; }
+.statuses { margin-top: 10px; font-size: .88rem; }
+.statuses span { background: #182b38; padding: 4px 8px; border-radius: 4px; overflow-wrap: anywhere; }
+#notice { color: #ffd166; }
+main { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; }
+.panel { min-width: 0; background: #192934; border: 1px solid #3c5668; border-radius: 8px; padding: 12px; }
+.map-stage { position: relative; aspect-ratio: 3 / 2; background: #0b1118; overflow: hidden; }
+.map-stage canvas { position: absolute; width: 100%; height: 100%; inset: 0; }
+#robot-canvas { pointer-events: none; }
+#camera-canvas { display: block; width: 100%; max-height: 330px; object-fit: contain; background: #0b1118; }
+dl { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 0; }
+dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+fieldset { border: 1px solid #476172; border-radius: 5px; margin: 0; padding: 10px; min-width: 0; }
+legend { font-size: .82rem; color: #b8cbd8; }
+.coordinate-fields { display: flex; flex-wrap: wrap; align-items: end; gap: 8px; }
+.coordinate-fields label { flex: 1 1 90px; min-width: 0; }
+.coordinate-fields input { width: 100%; }
+.joystick { display: inline-grid; place-items: center; width: 140px; height: 140px; border-radius: 50%; margin: 6px 12px 6px 0; touch-action: none; user-select: none; background: radial-gradient(circle, #366d84, #152b3a); }
+.joystick[data-active="true"] { border: 3px solid #ffd166; }
+.waypoint-list { margin: 10px 0; }
+[data-stale="true"] { color: #ffd166; }
+footer { color: #9fb7c7; font-size: .8rem; }
+@media (max-width: 760px) {
+  main { grid-template-columns: minmax(0, 1fr); }
+  header, main, footer { padding: 10px; }
+  #connection-form { align-items: stretch; }
+  #bridge-url { flex-basis: 100%; }
+  dl { grid-template-columns: 1fr; }
+}
+
+.initial-settings { position: relative; margin-left:auto; width: max-content; }
+.initial-settings summary { cursor:pointer; color:#c4e4f3; }
+.initial-popup { position:absolute; right:0; bottom:30px; z-index:10; width:330px; padding:16px; border:1px solid #608195; border-radius:8px; background:#192934; box-shadow:0 8px 25px #0008; }
+@media(min-width:1000px) {
+ body { height:100dvh; display:grid; grid-template-rows:auto minmax(0,1fr) auto; overflow:hidden; }
+ header,main,footer { width:100%; }
+ header { padding:8px 16px 4px; } h1 { font-size:19px; } header p { margin:3px 0; font-size:12px; }
+ input,button { padding:5px 8px; font-size:13px; } .statuses { margin-top:6px; font-size:12px; gap:5px; }
+ main { min-height:0; padding:6px 16px; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(270px,.85fr); grid-template-rows:minmax(0,.85fr) minmax(0,1.15fr); grid-template-areas:'map camera manual' 'map telemetry waypoint'; gap:9px; }
+ .panel { min-height:0; padding:10px; overflow:auto; } h2 { margin-bottom:7px; font-size:14px; }
+ .map-panel { grid-area:map; display:flex; flex-direction:column; overflow:hidden; }
+ .map-stage { flex:1; min-height:0; aspect-ratio:auto; } .map-panel p { font-size:11px; margin:4px 0; }
+ .map-panel p:last-child { display:none; }
+ [aria-labelledby='camera-title'] { grid-area:camera; display:flex; flex-direction:column; overflow:hidden; }
+ #camera-canvas { flex:1; min-height:0; max-height:none; width:100%; object-fit:contain; }
+ [aria-labelledby='camera-title'] p { font-size:11px; margin:3px 0; } [aria-labelledby='camera-title'] p:last-child { display:none; }
+ [aria-labelledby='telemetry-title'] { grid-area:telemetry; } dl { font-size:13px; gap:10px 5px; }
+ [aria-labelledby='telemetry-title'] > p { display:none; }
+ [aria-labelledby='manual-title'] { grid-area:manual; }
+ #manual-controls { display:flex; align-items:center; gap:7px; padding:6px; }
+ legend { font-size:11px; } .joystick { width:82px; height:82px; flex-shrink:0; margin:2px; font-size:12px; }
+ [aria-labelledby='manual-title'] > p { display:none; }
+ [aria-labelledby='waypoint-title'] { grid-area:waypoint; }
+ .coordinate-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; padding:6px; }
+ .coordinate-fields label { font-size:11px; gap:2px; } #waypoint-controls label:first-of-type { grid-column:1/-1; }
+ .coordinate-fields button { grid-column:1/-1; } #waypoint-list { margin:5px 0; max-height:65px; overflow:auto; gap:4px; }
+ #waypoint-list button { font-size:11px; padding:4px 6px; } [aria-labelledby='waypoint-title'] > p { display:none; }
+ footer { display:flex; justify-content:space-between; align-items:center; padding:3px 16px 6px; font-size:11px; }
+}
+
+@media(min-width:1000px){main{height:100%;margin:0 auto;overflow:hidden;}}

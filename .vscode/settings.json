@@ -11,5 +11,20 @@
     "*.dockerfile": "dockerfile"
   },
   "yaml.validate": true,
-  "files.exclude": { "**/__pycache__": true }
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "javascript.validate.enable": true
 }

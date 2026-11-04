@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "asset_type": "local_engineering_reference_webapp",
+  "source_root": "/home/cooper/workflow-console-cp22/engineering-runs/4a503a9e-2146-429d-a4ce-503d36a99b95/webpage_ws/fastbot_webapp",
+  "source_run": "4a503a9e-2146-429d-a4ce-503d36a99b95",
+  "source_classification": "independent generated engineering reference; not official course web assets or learner PASS",
+  "user_authorized_reuse_date": "2026-11-04 Asia/Shanghai",
+  "target": "simulation/webapp/fastbot_webapp",
+  "license": "not established for external publication; local reuse only",
+  "original_files": [
+    {
+      "path": "webpage_ws/fastbot_webapp/app.js",
+      "bytes": 12460,
+      "sha256": "bd4680c947a531b4b9740f6d7867007fc87db269b0cb8524f1369d790898e379"
+    },
+    {
+      "path": "webpage_ws/fastbot_webapp/index.html",
+      "bytes": 5837,
+      "sha256": "203ae67a2f2f91c744e6cf44b96927313f4d835bf8b4f7ea98e94532d4322493"
+    },
+    {
+      "path": "webpage_ws/fastbot_webapp/renderers.js",
+      "bytes": 8920,
+      "sha256": "0ad5c5357397dae7fe4f32f964f76fb173de0d6007334df0b083478d2d2854c6"
+    },
+    {
+      "path": "webpage_ws/fastbot_webapp/rosbridge.js",
+      "bytes": 6618,
+      "sha256": "44ed88a8d50fa6c5b8685a714464f5180e2927fe496961c51e60da37c9454858"
+    },
+    {
+      "path": "webpage_ws/fastbot_webapp/styles.css",
+      "bytes": 5622,
+      "sha256": "79de4e415bfd7080d5e32988cd58cc8a923d954d76cc49788e711a9a2391a905"
+    }
+  ],
+  "local_changes": [
+    {
+      "id": "CP23-C023",
+      "path": "rosbridge.js",
+      "change": "User authorized Coach support: odom set to verified /fastbot/odom; not learner implementation PASS"
+    }
+  ],
+  "pending": [
+    "joystick routing and navigation-state dependency",
+    "map display from existing /map",
+    "local and cloud connection URL plus HTML CSP",
+    "static HTTP and rosbridge runtime",
+    "Web image and Compose learner implementation",
+    "integration and reduced-help acceptance"
+  ]
+}
