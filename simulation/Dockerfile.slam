@@ -1,0 +1,35 @@
+# CP23 Task1: SLAM image
+# TODO(CP23-C015): Select the course-compatible ROS base image.
+# Add one FROM instruction below; consult the existing Gazebo Dockerfile or environment.lock.json.
+FROM ros:humble-ros-base-jammy
+
+# TODO(CP23-C016): Update the package index and install the SLAM runtime dependency.
+# Add one RUN instruction below; see attempt.md for the package name.
+RUN apt-get update && apt-get install -y ros-humble-cartographer-ros ros-humble-xacro
+
+# TODO(CP23-C017): Copy only the prepared course SLAM package into the image workspace.
+# Add one COPY instruction below; see attempt.md for source and destination.
+COPY simulation/src/fastbot_slam/ /ros2_ws/src/fastbot_slam/
+
+# TODO(CP23-C018): Set the workspace root for subsequent build commands.
+# Add one WORKDIR instruction below; see attempt.md for the directory.
+WORKDIR /ros2_ws
+# TODO(CP23-C019): Add the workspace build command on the next continued line.
+# Coach support: load the ROS environment before the learner-owned build command.
+RUN . /opt/ros/humble/setup.sh && \
+    colcon build
+
+# TODO(CP23-C020): Reuse the environment setup script in the SLAM image.
+# Add one COPY instruction below; see attempt.md for source and destination.
+COPY simulation/entrypoint_gazebo.sh /usr/local/bin/entrypoint_slam.sh
+
+# Coach support: make the copied environment setup script executable.
+RUN chmod +x /usr/local/bin/entrypoint_slam.sh
+
+# TODO(CP23-C021): Set the copied environment setup script as the default entrypoint.
+# Add one ENTRYPOINT instruction below; see attempt.md.
+ENTRYPOINT ["/usr/local/bin/entrypoint_slam.sh"]
+
+# TODO(CP23-C022): Set the default course SLAM launch command.
+# Add one CMD instruction below; keep the program and each argument separate.
+CMD ["ros2", "launch", "fastbot_slam", "cartographer.launch.py"]

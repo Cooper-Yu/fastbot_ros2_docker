@@ -1,0 +1,42 @@
+{
+  "files": [
+    {
+      "bytes": 989,
+      "sha256": "bdeb86da0dc832f22d015d67c2a2e34de769f1f6c9066dc54284a942128ced4a",
+      "path": "CMakeLists.txt"
+    },
+    {
+      "bytes": 596,
+      "sha256": "774050f60b6275f2ce0153e07a1f7233bb38fb16b3f6ffbc15049a7e66d02d3d",
+      "path": "package.xml"
+    },
+    {
+      "bytes": 1183,
+      "sha256": "609eb4faf42054b3f61224d58771bfa996158914e4f6cec9a66a969ea79552dd",
+      "path": "launch/cartographer.launch.py"
+    },
+    {
+      "bytes": 1377,
+      "sha256": "580b166461b525947a413126c5ba37110a8a21c692abe29236bf14935ecf09c4",
+      "path": "config/cartographer.lua"
+    }
+  ],
+  "schema": 1,
+  "target": "Humble/Jammy",
+  "date": "2026-11-04",
+  "scope": "Cartographer入口最小课程资源快照，非24文件完整包；不含导航/静态地图/RViz配置",
+  "license": "TODO: License declaration",
+  "cloud_ros": "galactic",
+  "source_root": "/home/user/ros2_ws/src/fastbot/fastbot_slam",
+  "verification": "源字节/hash已校验，实际包构建和课程运行未验",
+  "purpose": "已授权的本地课程开发；发布权限未认证",
+  "original_files_imported": 4,
+  "support_reason": "保留上游CMake安装声明所需目录；空占位仅让Git保存目录，不实现导航或RViz",
+  "git_revision": "9723ef5635f0f9dbb29709d662b772f45c93b979",
+  "source_rosject": 1017054,
+  "coach_support": [
+    "maps/.gitkeep",
+    "rviz/.gitkeep"
+  ],
+  "original_package_files": 24
+}
