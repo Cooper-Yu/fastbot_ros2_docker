@@ -4,7 +4,7 @@
 FROM ros:humble-ros-base-jammy
 # TODO(CP23-C025): Install the Web runtime dependencies during the image build.
 # Add one RUN instruction below; see attempt.md for the package names.
-RUN apt-get update && apt-get install -y ros-humble-rosbridge-server python3
+RUN apt-get update && apt-get install -y ros-humble-rosbridge-server ros-humble-nav2-msgs ros-humble-tf2-ros python3 python3-pil
 
 # Coach support (CP23-C026): reuse the reviewed COPY pattern for browser assets.
 COPY simulation/webapp/fastbot_webapp/ /webapp/
@@ -14,4 +14,11 @@ COPY simulation/entrypoint_webapp.sh /usr/local/bin/entrypoint_webapp.sh
 RUN chmod +x /usr/local/bin/entrypoint_webapp.sh
 # Coach support: check both local endpoints before declaring startup ready.
 COPY simulation/check_web_services.py /usr/local/bin/check_web_services.py
+# Coach support: opt-in simulated manual relay with command and feedback timeouts.
+COPY simulation/manual_bridge.py /usr/local/bin/manual_bridge.py
 ENTRYPOINT ["/usr/local/bin/entrypoint_webapp.sh"]
+
+# Coach support: full dashboard protocol, measured TF and guarded simulation control.
+COPY simulation/dashboard_adapter.py /usr/local/bin/dashboard_adapter.py
+
+COPY simulation/camera_relay.py /usr/local/bin/camera_relay.py

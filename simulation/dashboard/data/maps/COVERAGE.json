@@ -1,0 +1,37 @@
+{
+  "method": "Compare unmodified SLAM grid with independently sliced actual collision mesh at measured lidar height; no geometry-generated map",
+  "sensor_z": 0.3288294698127948,
+  "segments": 236,
+  "regions": {
+    "front_bedroom": {
+      "free_cells": 2908,
+      "known_free": 2893,
+      "occluded_solid_cells": 56,
+      "unknown_inside_solid": 0,
+      "known_free_fraction": 0.9948418156808804
+    },
+    "rear_bedroom": {
+      "free_cells": 2647,
+      "known_free": 2644,
+      "occluded_solid_cells": 318,
+      "unknown_inside_solid": 157,
+      "known_free_fraction": 0.9988666414809217
+    },
+    "front_living": {
+      "free_cells": 2295,
+      "known_free": 2264,
+      "occluded_solid_cells": 669,
+      "unknown_inside_solid": 513,
+      "known_free_fraction": 0.9864923747276688
+    },
+    "rear_living": {
+      "free_cells": 2460,
+      "known_free": 2460,
+      "occluded_solid_cells": 503,
+      "unknown_inside_solid": 364,
+      "known_free_fraction": 1.0
+    }
+  },
+  "free_floor_known_fraction": 0.995247332686712,
+  "limits": "Mesh-plane free area is not a proof that every robot-sized location is traversable; observed occupied grid and furniture occlusion still constrain paths."
+}

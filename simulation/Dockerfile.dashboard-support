@@ -1,0 +1,22 @@
+# Coach support layer for the full prior dashboard; no learner Compose implementation.
+FROM cp23-local/web-dashboard:20261104
+ARG NAV_PACKAGES="ros-humble-nav2-controller ros-humble-nav2-planner ros-humble-nav2-navfn-planner ros-humble-nav2-smoother ros-humble-nav2-behaviors ros-humble-nav2-bt-navigator ros-humble-nav2-waypoint-follower ros-humble-nav2-velocity-smoother ros-humble-nav2-lifecycle-manager ros-humble-nav2-map-server ros-humble-nav2-amcl ros-humble-nav2-rotation-shim-controller ros-humble-dwb-plugins ros-humble-nav2-common"
+COPY simulation/dashboard/fetch_dependencies.py /tmp/fetch_dependencies.py
+RUN --mount=type=cache,id=cp23-dashboard-apt-archives,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,id=cp23-dashboard-apt-lists,target=/var/lib/apt/lists,sharing=locked \
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    && apt-get -o Acquire::Retries=3 update \
+    && python3 /tmp/fetch_dependencies.py $NAV_PACKAGES \
+    && apt-get --no-download --no-install-recommends install -y $NAV_PACKAGES
+# DWB loads critic plugins dynamically; these are not pulled by dwb-plugins alone.
+RUN --mount=type=cache,id=cp23-dashboard-apt-archives,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,id=cp23-dashboard-apt-lists,target=/var/lib/apt/lists,sharing=locked \
+    python3 /tmp/fetch_dependencies.py ros-humble-dwb-critics ros-humble-nav2-regulated-pure-pursuit-controller \
+    && apt-get --no-download --no-install-recommends install -y ros-humble-dwb-critics ros-humble-nav2-regulated-pure-pursuit-controller
+COPY simulation/dashboard/ /dashboard/
+COPY simulation/entrypoint_webapp.sh /usr/local/bin/entrypoint_webapp.sh
+COPY simulation/webapp/fastbot_webapp/ /webapp/
+COPY simulation/dashboard_adapter.py /usr/local/bin/dashboard_adapter.py
+RUN chmod +x /usr/local/bin/entrypoint_webapp.sh
+ENV CP23_FULL_DASHBOARD=1
+COPY simulation/camera_relay.py /usr/local/bin/camera_relay.py

@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-04 Asia/Shanghai",
+  "environment": "WSL Ubuntu-22.04; containers Ubuntu22.04/ROS2Humble/GazeboClassic11",
+  "images": {
+    "gazebo": {
+      "tag": "cp23-local/gazebo-axis:20261104",
+      "id": "sha256:a947d59d41fff3fc95ee3f652daf1d3a58daa54464f6842466aa052aa226274c",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "slam": {
+      "tag": "cp23-local/slam-axis:20261104",
+      "id": "sha256:8aeb48a624facfebc80d1cef5befa7c13e3cfa71d7c35a90dfe3a5f6c4efd757",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "dashboard": {
+      "tag": "cp23-local/web-navigation:20261104",
+      "id": "sha256:5af35fa8342c67b3e94725f226763c96a13763454c09f77d318aa26ba320d261",
+      "os": "linux",
+      "architecture": "amd64"
+    }
+  },
+  "source_parent": "77abc7d7ead1b05ccb11937f2c9266d20d9f6aa7",
+  "source_files": [
+    {
+      "path": "simulation/entrypoint_webapp.sh",
+      "sha256": "bfe3057529e63be95653c3d5481813e5afdbc8f62d0b1ebb729d1700ada5d910"
+    },
+    {
+      "path": "simulation/dashboard_adapter.py",
+      "sha256": "dc3fe2e4e392a6f11f478105e550c19d84b7bc371d7d4a5277e41fec67ac9a9a"
+    },
+    {
+      "path": "simulation/camera_relay.py",
+      "sha256": "ce7c7abe7b9943dc578b74e4b3f74031a8cb99513e2c5c2cbf5f6153b320d128"
+    },
+    {
+      "path": "simulation/dashboard/navigation.launch.py",
+      "sha256": "aa79796169ddeec448a9b8d17da0c3f84ea37e303b913238e360731fa01761b7"
+    },
+    {
+      "path": "simulation/dashboard/nav2.yaml",
+      "sha256": "aa5b569254b1d4b796de42957ab1c9cb89198cb567459bb1215d5167a9907a29"
+    },
+    {
+      "path": "simulation/dashboard/run_local.bash",
+      "sha256": "ea0bc5d66ad23b4f34d5113c8036aec747c0ea4aebd103f9d079788d1dfc0fc6"
+    },
+    {
+      "path": "simulation/dashboard/measured_initial_pose.py",
+      "sha256": "764cfda9049e7133c3cadfac570107e7fabf7e6602af5dd8f86a051dded08917"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/index.html",
+      "sha256": "a4d21f4db4db8218efcea4f21f4d2a0a1344655f3e1f2683384e5b92d6b8b364"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/rosbridge.js",
+      "sha256": "8bd4068b1a7edf6c059588698993836d51a5ef0c2052c9e69e00cc042597a4b8"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/styles.css",
+      "sha256": "1ce4170d7001039b9b3edd031376d73206a4b711f4c2a43e8396d20c11f8787c"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/renderers.js",
+      "sha256": "4f2062577faf2be895d9c625a5c58266339653ddc4463d390dd079e8f9abfa45"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/server.py",
+      "sha256": "6099313f6836bf125707b85ce6940a22cba7f7acdc4489ca582c2e664c33f1b5"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/app.js",
+      "sha256": "3218277a3792f56e13a326620824761eff41e1e950b1804908256a1c616a3c9d"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/config/waypoints.default.json",
+      "sha256": "604dd2510ba7a6a1e20d349bf40519d049815805608c9f3cd861e7c71c4ba95d"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/MODEL-PROVENANCE.json",
+      "sha256": "e5706ed86c8264ef47f318ee4daed7d6fc0a55e73c75136d4d161047174d57a3"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/fastbot.urdf",
+      "sha256": "19798cece8c75ab3cb9ec304c3c891d599fa74753e3093d223053b4f95832a58"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/pololu_ball_caster.stl",
+      "sha256": "2588073f699b14962135452c8b870aa7cdb598e63dd0efc0c3e371e28dca2361"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_chassis.stl",
+      "sha256": "8b30a9ff4c9c7439000c63ffa9f974bd15ea2594e2ced8e0c3cac3d9aba685bf"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1__2.stl",
+      "sha256": "00795ce9db92252f953ecd02b717e5cc25d85dc87b9fbc882043cdce4877df1a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/lslidar_n10.stl",
+      "sha256": "2ce594888b95dea00b06c7dc82ad0d860f00c08a903f6269ba29cb390f3aa13d"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1.stl",
+      "sha256": "860e8a73c4ccfeeddc38f8ac7bd10e835d6745aeb7426c64f2f175a27908150b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/raspicam.stl",
+      "sha256": "5a790a7d406bf9b3016835b209c674e46af90238d7c17c9fde07f8ca662a993a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_motor.stl",
+      "sha256": "df743e6ff1db46cf6bd36ca0046e050496a74c8e871208a7699b77e765093e9b"
+    }
+  ],
+  "map_pgm_sha256": "c06722c4bc356b07975ebab87987a6be6bfbf2b5d0211b0fa71e5d7ee86f7915",
+  "independent_course_pass": false,
+  "official_grading": "NOT_RUN"
+}

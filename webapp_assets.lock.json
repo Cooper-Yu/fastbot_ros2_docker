@@ -1,52 +1,158 @@
 {
-  "schema_version": 1,
-  "asset_type": "local_engineering_reference_webapp",
-  "source_root": "/home/cooper/workflow-console-cp22/engineering-runs/4a503a9e-2146-429d-a4ce-503d36a99b95/webpage_ws/fastbot_webapp",
-  "source_run": "4a503a9e-2146-429d-a4ce-503d36a99b95",
-  "source_classification": "independent generated engineering reference; not official course web assets or learner PASS",
-  "user_authorized_reuse_date": "2026-11-04 Asia/Shanghai",
-  "target": "simulation/webapp/fastbot_webapp",
-  "license": "not established for external publication; local reuse only",
-  "original_files": [
+  "schema_version": 2,
+  "date": "2026-11-04 Asia/Shanghai",
+  "asset_type": "local_full_dashboard_reference_adapted_for_cp23",
+  "source_root": "/home/cooper/workflow-console-cp22/redo/71762ff4-b7ae-47a9-bdbc-79fe5f5784a9/webpage_ws/fastbot_webapp",
+  "source_classification": "Independent CP22 engineering implementation; user authorized local reuse; not official assets or learner PASS",
+  "license": "Private course/local use only; external redistribution not established",
+  "superseded_reference": {
+    "schema_version": 1,
+    "asset_type": "local_engineering_reference_webapp",
+    "source_root": "/home/cooper/workflow-console-cp22/engineering-runs/4a503a9e-2146-429d-a4ce-503d36a99b95/webpage_ws/fastbot_webapp",
+    "source_run": "4a503a9e-2146-429d-a4ce-503d36a99b95",
+    "source_classification": "independent generated engineering reference; not official course web assets or learner PASS",
+    "user_authorized_reuse_date": "2026-11-04 Asia/Shanghai",
+    "target": "simulation/webapp/fastbot_webapp",
+    "license": "not established for external publication; local reuse only",
+    "original_files": [
+      {
+        "path": "webpage_ws/fastbot_webapp/app.js",
+        "bytes": 12460,
+        "sha256": "bd4680c947a531b4b9740f6d7867007fc87db269b0cb8524f1369d790898e379"
+      },
+      {
+        "path": "webpage_ws/fastbot_webapp/index.html",
+        "bytes": 5837,
+        "sha256": "203ae67a2f2f91c744e6cf44b96927313f4d835bf8b4f7ea98e94532d4322493"
+      },
+      {
+        "path": "webpage_ws/fastbot_webapp/renderers.js",
+        "bytes": 8920,
+        "sha256": "0ad5c5357397dae7fe4f32f964f76fb173de0d6007334df0b083478d2d2854c6"
+      },
+      {
+        "path": "webpage_ws/fastbot_webapp/rosbridge.js",
+        "bytes": 6618,
+        "sha256": "44ed88a8d50fa6c5b8685a714464f5180e2927fe496961c51e60da37c9454858"
+      },
+      {
+        "path": "webpage_ws/fastbot_webapp/styles.css",
+        "bytes": 5622,
+        "sha256": "79de4e415bfd7080d5e32988cd58cc8a923d954d76cc49788e711a9a2391a905"
+      }
+    ],
+    "local_changes": [
+      {
+        "id": "CP23-C023",
+        "path": "rosbridge.js",
+        "change": "User authorized Coach support: odom set to verified /fastbot/odom; not learner implementation PASS"
+      },
+      {
+        "change": "Coach support: simulation manual readiness and fresh odometry gate, low speed scaling; navigation remains separate",
+        "path": "app.js",
+        "id": "CP23-C031"
+      },
+      {
+        "change": "Coach support: subscribe manual relay status, clamp0.05m/s and0.30rad/s, default local9090 URL",
+        "path": "rosbridge.js",
+        "id": "CP23-C031"
+      },
+      {
+        "change": "Coach support: update manual feedback/status text and current default local WebSocket port",
+        "path": "index.html",
+        "id": "CP23-C031"
+      }
+    ],
+    "pending": [
+      "local and cloud connection URL plus HTML CSP",
+      "Web image and Compose learner implementation",
+      "integration and reduced-help acceptance"
+    ],
+    "current_reference_files": [
+      {
+        "path": "app.js",
+        "sha256": "afb1e085f719a8e52f9f698c53743c0207bad80c712ed9851d7e8f566d8e4d17"
+      },
+      {
+        "path": "index.html",
+        "sha256": "a49d392749adb4d7f82950d4f6096a1655e418b0600b2f6b1c33c51eeb9d595e"
+      },
+      {
+        "path": "renderers.js",
+        "sha256": "0ad5c5357397dae7fe4f32f964f76fb173de0d6007334df0b083478d2d2854c6"
+      },
+      {
+        "path": "rosbridge.js",
+        "sha256": "4e3b70243682864afe4d61fe197f721c2e5adab9b3bdedb037971cc4f4ace8fd"
+      },
+      {
+        "path": "styles.css",
+        "sha256": "79de4e415bfd7080d5e32988cd58cc8a923d954d76cc49788e711a9a2391a905"
+      }
+    ],
+    "support_sources": [
+      {
+        "path": "simulation/manual_bridge.py",
+        "classification": "Coach-authored simulation-only integration support; not learner core Docker implementation",
+        "sha256": "a828959800de65bcb2ddb48a56562424c975a3f724a55ac7084d252731a4c78f"
+      }
+    ]
+  },
+  "imported_files": [
     {
-      "path": "webpage_ws/fastbot_webapp/app.js",
-      "bytes": 12460,
-      "sha256": "bd4680c947a531b4b9740f6d7867007fc87db269b0cb8524f1369d790898e379"
+      "path": "index.html",
+      "source_sha256": "2a9884e51d6b4b4405d8fc1c45b9f6fae1925fc8f1a324e8f31f61d3843212ee",
+      "target_sha256": "a4d21f4db4db8218efcea4f21f4d2a0a1344655f3e1f2683384e5b92d6b8b364"
     },
     {
-      "path": "webpage_ws/fastbot_webapp/index.html",
-      "bytes": 5837,
-      "sha256": "203ae67a2f2f91c744e6cf44b96927313f4d835bf8b4f7ea98e94532d4322493"
+      "path": "app.js",
+      "source_sha256": "b8d988ff0fa35984f842d704235927683b3d1b3cd5932452e3e5e2377783774d",
+      "target_sha256": "3218277a3792f56e13a326620824761eff41e1e950b1804908256a1c616a3c9d"
     },
     {
-      "path": "webpage_ws/fastbot_webapp/renderers.js",
-      "bytes": 8920,
-      "sha256": "0ad5c5357397dae7fe4f32f964f76fb173de0d6007334df0b083478d2d2854c6"
+      "path": "renderers.js",
+      "source_sha256": "a61d8f0b2fcc479c65f9514d1ed01a458715d807efa08cd022064891e8c1e33e",
+      "target_sha256": "4f2062577faf2be895d9c625a5c58266339653ddc4463d390dd079e8f9abfa45"
     },
     {
-      "path": "webpage_ws/fastbot_webapp/rosbridge.js",
-      "bytes": 6618,
-      "sha256": "44ed88a8d50fa6c5b8685a714464f5180e2927fe496961c51e60da37c9454858"
-    },
-    {
-      "path": "webpage_ws/fastbot_webapp/styles.css",
-      "bytes": 5622,
-      "sha256": "79de4e415bfd7080d5e32988cd58cc8a923d954d76cc49788e711a9a2391a905"
-    }
-  ],
-  "local_changes": [
-    {
-      "id": "CP23-C023",
       "path": "rosbridge.js",
-      "change": "User authorized Coach support: odom set to verified /fastbot/odom; not learner implementation PASS"
+      "source_sha256": "8a8a9ffbd4f8222f2b55005f5a1228eef0697b69ba36713024dad9bfc67b382b",
+      "target_sha256": "8bd4068b1a7edf6c059588698993836d51a5ef0c2052c9e69e00cc042597a4b8"
+    },
+    {
+      "path": "styles.css",
+      "source_sha256": "1ce4170d7001039b9b3edd031376d73206a4b711f4c2a43e8396d20c11f8787c",
+      "target_sha256": "1ce4170d7001039b9b3edd031376d73206a4b711f4c2a43e8396d20c11f8787c"
+    },
+    {
+      "path": "server.py",
+      "source_sha256": "7f25de4e271910e3d49ad3111936561e8da316958919fe71463924bcda71e6bd",
+      "target_sha256": "6099313f6836bf125707b85ce6940a22cba7f7acdc4489ca582c2e664c33f1b5"
     }
   ],
-  "pending": [
-    "joystick routing and navigation-state dependency",
-    "map display from existing /map",
-    "local and cloud connection URL plus HTML CSP",
-    "static HTTP and rosbridge runtime",
-    "Web image and Compose learner implementation",
-    "integration and reduced-help acceptance"
-  ]
+  "adapter": {
+    "source": "/home/cooper/workflow-console-cp22/redo/71762ff4-b7ae-47a9-bdbc-79fe5f5784a9/ros_ws/src/fastbot_slam/scripts/web_adapter.py",
+    "target": "simulation/dashboard_adapter.py",
+    "source_sha256": "3228f35ccb30688815a1d55f8a260fa88f7bbb4dc0bb3bc90ce4318467ffaa08",
+    "target_sha256": "dc3fe2e4e392a6f11f478105e550c19d84b7bc371d7d4a5277e41fec67ac9a9a"
+  },
+  "adaptations": [
+    "English full dashboard and current topics/frames",
+    "Current CP23 expanded URDF and original STL meshes, see assets/MODEL-PROVENANCE.json",
+    "Measured joints, TF pose and camera input",
+    "ROSbridge bounded fragment assembly per official ROSBRIDGE_PROTOCOL.md",
+    "Simulation limits 0.05m/s and0.30rad/s",
+    "Empty persistent waypoint store, no old map or coordinates copied",
+    "Headless preview, camera5simHz and100Hz /clock; feedback thresholds unchanged",
+    "RPP local path following at0.05m/s,0.30rad/s; goal tolerance0.15m/0.2rad unchanged",
+    "Real map and persisted waypoint project data; unknownPGM128 round-trip verified"
+  ],
+  "status": "Local support verified: three RPP arrivals, manual release and lost-input stop, persisted reload, real model/map/JPEG; no independent learner or official PASS",
+  "local_camera": {
+    "source": "/fastbot_camera/image_raw",
+    "output": "/fastbot_web/camera/compressed",
+    "codec": "JPEG quality70; source800x800, <=2Hz monotonic relay",
+    "relay_sha256": "ce7c7abe7b9943dc578b74e4b3f74031a8cb99513e2c5c2cbf5f6153b320d128",
+    "reason": "Raw frames saturated ROSbridge write queue; JPEG keeps feedback and control responsive"
+  }
 }

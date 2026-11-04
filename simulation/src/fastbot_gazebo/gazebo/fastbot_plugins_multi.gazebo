@@ -43,7 +43,7 @@
 			<publish_wheel_tf>true</publish_wheel_tf>
 
 			<odometry_frame>${robot_name}_odom</odometry_frame>
-			<robot_base_frame>${robot_name}_base_link</robot_base_frame>
+			<robot_base_frame>${robot_name}_base_footprint</robot_base_frame>
 		</plugin>
 	</gazebo>
 
@@ -92,7 +92,8 @@
 
   <gazebo reference="${robot_name}_camera">
     <sensor type="camera" name="${robot_name}_camera">
-      <update_rate>30.0</update_rate>
+      <!-- Local preview: preserve 800x800 images while keeping physics responsive. -->
+      <update_rate>5.0</update_rate>
       <camera name="${robot_name}_head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>

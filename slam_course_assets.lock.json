@@ -38,5 +38,16 @@
     "maps/.gitkeep",
     "rviz/.gitkeep"
   ],
-  "original_package_files": 24
+  "original_package_files": 24,
+  "local_axis_compatibility_20261104": {
+    "reason": "Track X-forward footprint consistently with simulator odometry",
+    "evidence": "runtime_logs/web_fidelity_live_20261104_02/axis-probe.json",
+    "files": [
+      {
+        "path": "simulation/src/fastbot_slam/config/cartographer.lua",
+        "sha256": "67d7f080091fa38d91a3403b9cea0720a25bf0dbc0bd432c8b96bfc4b1b48a75"
+      }
+    ],
+    "runtime": "post-repair forward projection0.125366m lateral0.001761m; full mapping pending"
+  }
 }

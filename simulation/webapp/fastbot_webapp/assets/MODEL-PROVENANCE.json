@@ -1,0 +1,92 @@
+{
+  "source": "Current CP23 fastbot_multi_sim.xacro expanded in Gazebo image cp23-local/gazebo-axis:20261104; actual Gazebo visual model",
+  "robot_name": "fastbot",
+  "drive_frame": "fastbot_base_footprint",
+  "adaptations": [
+    "Remove Gazebo-only tags",
+    "Serve the same visual meshes using relative HTTP URLs; CAD body unchanged; explicit X-forward drive root +pi/2 fixed joint"
+  ],
+  "urdf_sha256": "19798cece8c75ab3cb9ec304c3c891d599fa74753e3093d223053b4f95832a58",
+  "meshes": [
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_chassis.stl",
+      "sha256": "8b30a9ff4c9c7439000c63ffa9f974bd15ea2594e2ced8e0c3cac3d9aba685bf"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_chassis.stl",
+      "sha256": "8b30a9ff4c9c7439000c63ffa9f974bd15ea2594e2ced8e0c3cac3d9aba685bf"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_motor.stl",
+      "sha256": "df743e6ff1db46cf6bd36ca0046e050496a74c8e871208a7699b77e765093e9b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_motor.stl",
+      "sha256": "df743e6ff1db46cf6bd36ca0046e050496a74c8e871208a7699b77e765093e9b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1.stl",
+      "sha256": "860e8a73c4ccfeeddc38f8ac7bd10e835d6745aeb7426c64f2f175a27908150b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1.stl",
+      "sha256": "860e8a73c4ccfeeddc38f8ac7bd10e835d6745aeb7426c64f2f175a27908150b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1__2.stl",
+      "sha256": "00795ce9db92252f953ecd02b717e5cc25d85dc87b9fbc882043cdce4877df1a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1__2.stl",
+      "sha256": "00795ce9db92252f953ecd02b717e5cc25d85dc87b9fbc882043cdce4877df1a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_motor.stl",
+      "sha256": "df743e6ff1db46cf6bd36ca0046e050496a74c8e871208a7699b77e765093e9b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/fastbot_motor.stl",
+      "sha256": "df743e6ff1db46cf6bd36ca0046e050496a74c8e871208a7699b77e765093e9b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1__2.stl",
+      "sha256": "00795ce9db92252f953ecd02b717e5cc25d85dc87b9fbc882043cdce4877df1a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1__2.stl",
+      "sha256": "00795ce9db92252f953ecd02b717e5cc25d85dc87b9fbc882043cdce4877df1a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1.stl",
+      "sha256": "860e8a73c4ccfeeddc38f8ac7bd10e835d6745aeb7426c64f2f175a27908150b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/wheel_d65x25_v1.stl",
+      "sha256": "860e8a73c4ccfeeddc38f8ac7bd10e835d6745aeb7426c64f2f175a27908150b"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/lslidar_n10.stl",
+      "sha256": "2ce594888b95dea00b06c7dc82ad0d860f00c08a903f6269ba29cb390f3aa13d"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/lslidar_n10.stl",
+      "sha256": "2ce594888b95dea00b06c7dc82ad0d860f00c08a903f6269ba29cb390f3aa13d"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/raspicam.stl",
+      "sha256": "5a790a7d406bf9b3016835b209c674e46af90238d7c17c9fde07f8ca662a993a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/raspicam.stl",
+      "sha256": "5a790a7d406bf9b3016835b209c674e46af90238d7c17c9fde07f8ca662a993a"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/pololu_ball_caster.stl",
+      "sha256": "2588073f699b14962135452c8b870aa7cdb598e63dd0efc0c3e371e28dca2361"
+    },
+    {
+      "path": "simulation/webapp/fastbot_webapp/assets/meshes/pololu_ball_caster.stl",
+      "sha256": "2588073f699b14962135452c8b870aa7cdb598e63dd0efc0c3e371e28dca2361"
+    }
+  ]
+}

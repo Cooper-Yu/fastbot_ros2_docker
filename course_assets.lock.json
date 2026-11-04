@@ -7,7 +7,10 @@
   "git_branch": "student",
   "working_tree_dirty": true,
   "target": "Ubuntu22.04 ROS2Humble GazeboClassic11",
-  "packages": ["fastbot_description", "fastbot_gazebo"],
+  "packages": [
+    "fastbot_description",
+    "fastbot_gazebo"
+  ],
   "package_file_counts": {
     "fastbot_gazebo": 81,
     "fastbot_description": 51
@@ -50,5 +53,33 @@
       "files_verified": 119,
       "run": "9199f1e4a8e7"
     }
+  },
+  "local_axis_compatibility_20261104": {
+    "reason": "CAD body forward -Y observed by raw odometry; add +pi/2 drive-to-CAD fixed joint, expose X-forward footprint, diff-drive odom child footprint",
+    "evidence": "runtime_logs/web_fidelity_live_20261104_02/axis-probe.json",
+    "files": [
+      {
+        "path": "simulation/src/fastbot_description/models/urdf/fastbot_multi_sim.xacro",
+        "sha256": "7b5adad727b193665a6eacacb5c230e4add13bdce0de5c048884f4b4af08e7b0"
+      },
+      {
+        "path": "simulation/src/fastbot_gazebo/CMakeLists.txt",
+        "sha256": "c270a76eb70f2128a56478ac26fe5926c1241840d536765c593cf1af4d23bcb0"
+      },
+      {
+        "path": "simulation/src/fastbot_gazebo/config/local_clock.yaml",
+        "sha256": "0e4e215e3df224e78f368370c4024423e8ab84b873c48d2e37fed536aa29eafc"
+      },
+      {
+        "path": "simulation/src/fastbot_gazebo/gazebo/fastbot_plugins_multi.gazebo",
+        "sha256": "82d18e3520f759eb81105af83abc2c2a82da7f64ec6a849f5bba0ede2a690d00"
+      },
+      {
+        "path": "simulation/src/fastbot_gazebo/launch/botbox_world_room.launch.xml",
+        "sha256": "afa9a7acc892f7f9b4c4823487d5b2afdc38b561d2977ccb331dd426f802d89b"
+      }
+    ],
+    "runtime": "post-repair forward projection0.125366m lateral0.001761m; full mapping pending",
+    "performance": "Actual clock0.01sim-second period, camera800x800/5simHz; public previewheadless; source scene/meshes andfeedback safety bounds preserved"
   }
 }

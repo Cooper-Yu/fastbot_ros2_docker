@@ -1,98 +1,134 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src ws://127.0.0.1:* ws://localhost:* ws://[::1]:* wss://127.0.0.1:* wss://localhost:* wss://[::1]:*; img-src 'self' blob: data:; object-src 'none'; base-uri 'none'">
-  <title>FastBot 独立参考界面</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script defer src="./rosbridge.js"></script>
-  <script type="module" src="./app.js"></script>
+  <title>FastBot | Home navigation</title>
+  <link rel="stylesheet" href="./styles.css?v=cp23-20261104">
 </head>
 <body>
-  <header>
-    <h1>FastBot · 独立参考实现</h1>
-    <p>本地隔离仿真 · 正式课程验收未完成 · 请勿连接硬件。</p>
-    <form id="connection-form">
-      <label for="bridge-url">本机 ROSbridge</label>
-      <input id="bridge-url" type="url" value="ws://127.0.0.1:9226" required spellcheck="false" autocomplete="off">
-      <button id="connect" type="submit">连接</button>
-      <button id="disconnect" type="button" disabled>停车并断开</button>
-    </form>
-    <div class="statuses" role="status" aria-live="polite">
-      <span>连接：<output id="connection-status">disconnected</output></span>
-      <span>导航服务：<output id="nav-readiness">unknown / stale</output></span>
-      <span>Action：<output id="action-status">unknown / stale</output></span>
-      <span>真实结果码：<output id="result-code">—</output></span>
-    </div>
-    <p id="notice" role="alert">当前为界面与传输层交付；app.js/renderers.js尚待后续步骤提供，按钮保持禁用。</p>
-  </header>
-  <main>
-    <section class="panel map-panel" aria-labelledby="map-title">
-      <h2 id="map-title">地图 · 简化三维机器人</h2>
-      <div id="map-stage" class="map-stage">
-        <canvas id="map-canvas" width="720" height="480" aria-label="实际OccupancyGrid地图"></canvas>
-        <canvas id="robot-canvas" width="720" height="480" aria-label="地图坐标中的WebGL机器人"></canvas>
-      </div>
-      <p>地图：<output id="map-status">stale / 无数据</output> · TF位姿：<output id="pose-status">stale / 无数据</output></p>
-      <p>WebGL立方体为简化几何模型，不是URDF保真呈现；无有效map位姿不得显示定位就绪。</p>
-    </section>
-    <section class="panel" aria-labelledby="camera-title">
-      <h2 id="camera-title">相机</h2>
-      <canvas id="camera-canvas" width="640" height="480" aria-label="机器人相机图像"></canvas>
-      <p id="camera-status" role="status">stale / 无数据</p>
-      <p>原始图像经ROSbridge传输，带宽较高；最多2Hz，仅支持rgb8、bgr8、mono8。</p>
-    </section>
-    <section class="panel" aria-labelledby="telemetry-title">
-      <h2 id="telemetry-title">实测遥测</h2>
-      <dl>
-        <dt>线速度 / m·s⁻¹</dt><dd id="linear-speed">— / stale</dd>
-        <dt>角速度 / rad·s⁻¹</dt><dd id="angular-speed">— / stale</dd>
-        <dt>map位置 / m</dt><dd id="map-position">— / stale</dd>
-        <dt>map航向 / rad</dt><dd id="map-heading">— / stale</dd>
-      </dl>
-      <p>速度仅取/fastbot_1/odom；地图位姿仅取/web_nav/pose。</p>
-    </section>
-    <section class="panel" aria-labelledby="manual-title">
-      <h2 id="manual-title">按住驾驶</h2>
-      <fieldset id="manual-controls" disabled>
-        <legend>无导航活动且状态新鲜时才允许</legend>
-        <button id="joystick" class="joystick" type="button" aria-label="按住并拖动驾驶；松开停车">按住拖动</button>
-        <button id="stop-manual" type="button">手动零速</button>
-      </fieldset>
-      <p>10Hz；|v| ≤ 0.15m/s，|ω| ≤ 0.6rad/s。断线依赖服务器watchdog，非硬件急停。</p>
-    </section>
-    
-    <section class="panel" aria-labelledby="waypoint-title">
-      <h2 id="waypoint-title">用户标定目标</h2>
-      <form id="waypoint-form">
-        <fieldset id="waypoint-controls" class="coordinate-fields" disabled>
-          <legend>仅保存用户输入；保存不发送导航目标</legend>
-          <label>名称<input id="waypoint-name" maxlength="48" required></label>
-          <label>X / m<input id="waypoint-x" type="number" step="any" required></label>
-          <label>Y / m<input id="waypoint-y" type="number" step="any" required></label>
-          <label>Yaw / rad<input id="waypoint-yaw" type="number" step="any" required></label>
-          <button type="submit">保存目标</button>
-        </fieldset>
-      </form>
-      <div id="waypoint-list" class="waypoint-list" aria-label="保存的目标按钮"></div>
-      <button id="cancel-navigation" type="button" disabled>请求取消真实导航</button>
-      <p>无预设坐标；发布目标不等于接受或到达。取消须等待真实Action终态。</p>
-    </section>
-  </main>
-  <footer><details class="initial-settings"><summary>初始定位设置</summary><div class="initial-popup">
-      <h2 id="initial-title">显式设置地图初始位姿</h2>
-      <form id="initial-pose-form">
-        <fieldset id="initial-pose-controls" class="coordinate-fields" disabled>
-          <legend>map坐标；不会自动定位或宣称就绪</legend>
-          <label>X / m<input id="initial-x" type="number" step="any" required></label>
-          <label>Y / m<input id="initial-y" type="number" step="any" required></label>
-          <label>Yaw / rad<input id="initial-yaw" type="number" step="any" required></label>
-          <button type="submit">发布初始位姿</button>
-        </fieldset>
-      </form>
-    </div></details>本地参考实现 · 正式课程验收未完成</footer>
-  <noscript>必须启用JavaScript；当前没有连接或运动。</noscript>
+  <div class="dashboard">
+    <header class="toolbar">
+      <div class="brand"><strong>FASTBOT</strong><span>Home navigation</span></div>
+      <label class="endpoint" for="rosbridge-url">ROSbridge session URL
+        <input id="rosbridge-url" type="url" value="ws://127.0.0.1:19090" placeholder="ws://127.0.0.1:19090" autocomplete="off" spellcheck="false" aria-describedby="connection-status">
+      </label>
+      <button id="connect" type="button">Connect</button>
+      <button id="disconnect" type="button" disabled>Disconnect</button>
+      <output id="connection-status" class="badge" role="status" aria-live="polite">Disconnected</output>
+      <output id="command-status" class="badge" role="status">Disconnected</output>
+      <details id="settings" class="settings">
+        <summary>Settings</summary>
+        <div class="settings-sheet">
+          <h2>Session calibration</h2>
+          <p>CP23 local simulation defaults. Change settings only while disconnected. Connecting never starts motion.</p>
+          <fieldset id="topic-settings">
+            <legend>ROS topics and frames</legend>
+            <div class="settings-grid">
+              <label>Map topic<input id="map-topic" value="/fastbot_web/map" spellcheck="false"></label>
+              <label>Camera topic<input id="camera-topic" value="/fastbot_web/camera/compressed" spellcheck="false"></label>
+              <label>Odometry topic<input id="odom-topic" value="/fastbot_web/measured_odom" spellcheck="false"></label>
+              <label>Measured map pose topic<input id="pose-topic" value="/fastbot_web/pose" spellcheck="false"></label>
+              <label>Adapter status topic<input id="status-topic" value="/fastbot_web/status" spellcheck="false"></label>
+              <label>Manual adapter input<input id="manual-topic" value="/fastbot_web/manual_cmd" spellcheck="false"></label>
+              <label>Goal adapter input<input id="goal-topic" value="/fastbot_web/goal" spellcheck="false"></label>
+              <label>Cancel adapter input<input id="cancel-topic" value="/fastbot_web/cancel" spellcheck="false"></label>
+              <label>Initial pose topic<input id="initialpose-topic" value="/initialpose" spellcheck="false"></label>
+              <label>Map frame<input id="map-frame" value="map" spellcheck="false"></label>
+              <label>Odometry frame<input id="odom-frame" value="fastbot_odom" spellcheck="false"></label>
+              <label>Robot base frame<input id="base-frame" value="fastbot_base_footprint" spellcheck="false"></label>
+              <label>Live-data timeout (ms)<input id="freshness-ms" type="number" min="200" max="2000" step="50" value="1500"></label>
+              <label>Camera throttle (ms)<input id="camera-throttle-ms" type="number" min="100" max="2000" step="50" value="200"></label>
+              <label class="checkbox"><input id="map-transient-local" type="checkbox">Request transient-local map QoS when supported</label>
+            </div>
+          </fieldset>
+          <fieldset id="initialpose-controls">
+            <legend>Explicit localization initialization</legend>
+            <p>Enter an observed map pose, not an assumed home location. Yaw is in radians; covariance values are variances.</p>
+            <div class="settings-grid">
+              <label>X (m)<input id="initialpose-x" type="number" step="any" placeholder="Required"></label>
+              <label>Y (m)<input id="initialpose-y" type="number" step="any" placeholder="Required"></label>
+              <label>Yaw (rad)<input id="initialpose-yaw" type="number" step="any" placeholder="Required"></label>
+              <label>X variance (m²)<input id="initialpose-var-x" type="number" min="0" step="any" value="0.25"></label>
+              <label>Y variance (m²)<input id="initialpose-var-y" type="number" min="0" step="any" value="0.25"></label>
+              <label>Yaw variance (rad²)<input id="initialpose-var-yaw" type="number" min="0" step="any" value="0.06854"></label>
+            </div>
+            <label class="checkbox"><input id="initialpose-confirm" type="checkbox">I confirm this pose against the actual cloud map.</label>
+            <button id="initialpose-send" type="button" disabled>Send confirmed initial pose</button>
+            <output id="initialpose-status" role="status">Not sent</output>
+          </fieldset>
+        </div>
+      </details>
+    </header>
+
+    <main class="workspace" aria-label="Robot dashboard">
+      <section class="panel map-panel" aria-labelledby="map-heading">
+        <div class="panel-heading"><h1 id="map-heading">Environment map</h1><output id="map-status">No map received</output></div>
+        <div class="viewport map-viewport"><canvas id="map-canvas" width="800" height="600" aria-label="Actual occupancy map and measured robot pose">Occupancy map requires canvas support.</canvas></div>
+        <p class="panel-caption">Room map and live robot position</p>
+      </section>
+
+      <section class="panel robot-panel" aria-labelledby="robot-heading">
+        <div class="panel-heading"><h2 id="robot-heading">3D FastBot</h2><output id="model-status">Model not loaded</output></div>
+        <div class="viewport"><canvas id="robot-canvas" width="480" height="300" aria-label="Course FastBot mesh model with measured world motion">The robot view requires WebGL.</canvas></div>
+        <p class="panel-caption">FastBot · live pose · 10 cm grid</p>
+      </section>
+
+      <section class="panel camera-panel" aria-labelledby="camera-heading">
+        <div class="panel-heading"><h2 id="camera-heading">Live camera</h2><output id="camera-status">No image received</output></div>
+        <div class="viewport"><canvas id="camera-canvas" width="640" height="480" aria-label="Live robot camera image">Camera display requires canvas support.</canvas></div>
+        <p class="panel-caption">Live view from the robot</p>
+      </section>
+
+      <section class="panel telemetry-panel" aria-labelledby="telemetry-heading">
+        <div class="panel-heading"><h2 id="telemetry-heading">Measured telemetry</h2><output id="telemetry-status">Unavailable</output></div>
+        <dl class="telemetry">
+          <div><dt>Linear speed · m/s</dt><dd><output id="linear-speed">—</output></dd></div>
+          <div><dt>Angular speed · rad/s</dt><dd><output id="angular-speed">—</output></dd></div>
+          <div><dt>Map position · m</dt><dd><output id="robot-position">Unavailable</output></dd></div>
+          <div><dt>Orientation · rad</dt><dd><output id="robot-orientation">Unavailable</output></dd></div>
+        </dl>
+        <div class="freshness"><span>Odometry pose Δ / source time: <output id="odom-status">unavailable</output></span><span>Map TF: <output id="pose-status">unavailable</output></span></div>
+      </section>
+
+      <section class="panel joystick-panel" aria-labelledby="joystick-heading">
+        <div class="panel-heading"><h2 id="joystick-heading">Hold to drive</h2><output id="manual-status">Disabled</output></div>
+        <div class="drive-controls">
+          <button id="joystick" class="joystick" type="button" disabled aria-label="Hold and drag upward to drive forward, downward to reverse, horizontally to turn" aria-describedby="joystick-help"><span class="joystick-axis vertical"></span><span class="joystick-axis horizontal"></span><span id="joystick-knob" class="joystick-knob"></span></button>
+          <div class="drive-copy"><p id="joystick-help">Hold and drag.<br>Release to stop.</p><p>≤ 0.05 m/s<br>≤ 0.30 rad/s · 10 Hz</p><button id="stop" class="danger" type="button" disabled>Stop / cancel</button></div>
+        </div>
+      </section>
+
+      <section class="panel waypoints-panel" aria-labelledby="waypoints-heading">
+        <div class="panel-heading"><h2 id="waypoints-heading">Saved waypoints</h2><button id="waypoint-add" type="button">＋ Add waypoint</button></div>
+        <output id="waypoint-status" class="waypoint-store-status" role="status">Loading project waypoints</output>
+        <div id="waypoint-list" class="waypoint-list" role="group" aria-label="Project navigation waypoints"></div>
+        <div class="button-row"><button id="waypoint-reload" type="button">Refresh waypoints</button></div>
+      </section>
+      <dialog id="waypoint-dialog" aria-labelledby="waypoint-dialog-title">
+        <h3 id="waypoint-dialog-title">Add waypoint</h3>
+        <output id="waypoint-editor-status" role="status"></output>
+        <div class="waypoint-editor">
+          <label class="waypoint-name-label">Name<input id="waypoint-name" maxlength="48" placeholder="e.g. Kitchen, Dining table" autocomplete="off"></label>
+          <label>X (m)<input id="waypoint-x" type="number" step="any" placeholder="X"></label>
+          <label>Y (m)<input id="waypoint-y" type="number" step="any" placeholder="Y"></label>
+          <label>Yaw (rad)<input id="waypoint-yaw" type="number" step="any" placeholder="Yaw"></label>
+          <label>Frame<input id="waypoint-frame" value="map" spellcheck="false"></label>
+        </div>
+        <div class="button-row"><button id="waypoint-capture" type="button" disabled>Use current robot pose</button><button id="waypoint-save" type="button" disabled>Save waypoint</button><button id="waypoint-close" type="button">Cancel</button></div>
+      </dialog>
+
+      <section class="panel navigation-panel" aria-labelledby="navigation-heading">
+        <div class="panel-heading"><h2 id="navigation-heading">Navigation</h2><output id="adapter-status">Adapter unavailable</output></div>
+        <div class="navigation-body"><output id="navigation-status" role="status" aria-live="polite">Disconnected — no goal requested</output><button id="cancel-goal" class="danger" type="button" disabled>Cancel goal</button></div>
+        <output id="navigation-detail" class="navigation-detail">Only adapter acceptance and terminal results establish goal status. Publishing is not arrival.</output>
+      </section>
+    </main>
+
+    <footer><span id="application-status" role="status">Disconnected. Connect to the CP23 simulation to view live data.</span><span>FastBot · CP23</span></footer>
+  </div>
+  <noscript>This dashboard needs JavaScript. No connection or robot motion is initiated without it.</noscript>
+  <script type="module" src="./app.js?v=cp23-20261104"></script>
 </body>
 </html>

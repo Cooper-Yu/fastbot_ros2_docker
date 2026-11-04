@@ -8,6 +8,14 @@
 	<xacro:include filename="$(find fastbot_description)/models/urdf/materials.xacro" />
 	<xacro:include filename="$(find fastbot_description)/models/urdf/fastbot_body.xacro" />
 
+    <!-- Local Humble compatibility: the source CAD body's forward axis is -Y.
+         Keep its geometry intact; expose an X-forward drive root for ROS odometry. -->
+    <link name="$(arg robot_name)_base_footprint"/>
+    <joint name="$(arg robot_name)_drive_to_cad" type="fixed">
+      <parent link="$(arg robot_name)_base_footprint"/>
+      <child link="$(arg robot_name)_base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 1.5707963267948966"/>
+    </joint>
     <xacro:fastbot_body  robot_name="$(arg robot_name)"/>
 
         <!-- GAZEBO STUFF-->

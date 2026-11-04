@@ -1,0 +1,10 @@
+{
+  "cells": 15980,
+  "mismatched_cells": 0,
+  "unknown_cells": 5153,
+  "free_cells": 10053,
+  "occupied_cells": 774,
+  "expected_sha256": "0d3b191fe4c30f426afda1d643841a007650eea4e1ab587173a525d24a49519e",
+  "actual_sha256": "0d3b191fe4c30f426afda1d643841a007650eea4e1ab587173a525d24a49519e",
+  "passed": true
+}
