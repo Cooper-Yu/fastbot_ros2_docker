@@ -1,0 +1,8 @@
+# Coach support: actual user-owned Docker Hub repository confirmed by screenshot.
+services:
+  fastbot-ros2-gazebo:
+    image: cooper992/cooper12138-cp22:fastbot-ros2-gazebo
+  fastbot-ros2-slam:
+    image: cooper992/cooper12138-cp22:fastbot-ros2-slam
+  fastbot-ros2-webapp:
+    image: cooper992/cooper12138-cp22:fastbot-ros2-webapp

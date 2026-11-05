@@ -68,3 +68,9 @@ simulation/compose.yaml中的构建、域编号、端口、开关与卷映射已
 ## 当前本机 Compose 运行入口
 
 三服务Compose的本机接线与静止集成已验证；参见[运行说明](simulation/COMPOSE_LOCAL.md)。核心compose.yaml由学习者逐片填写，本机资源/WSLg/退出接线由Coach支撑。实际镜像与源hash见compose_runtime.lock.json。命名卷重建持久性通过，当前测试实例/网络已清理、数据卷保留；新增运动/浏览器回归与减少帮助检查另待。此前Docker CLI不可用已恢复，未提交或推送本轮更改。
+
+## Docker Hub 发布（2026-11-05）
+
+实际仓库：[cooper992/cooper12138-cp22](https://hub.docker.com/r/cooper992/cooper12138-cp22)，三个tag为fastbot-ros2-gazebo、fastbot-ros2-slam、fastbot-ros2-webapp，平台linux/amd64。三项已推送并从远端拉取核对digest；固定信息见hub_release.lock.json。
+
+simulation/compose.hub.yaml只覆盖镜像名称；可与核心compose.yaml及目标环境配置合并。本机配置仍见simulation/COMPOSE_LOCAL.md，不把WSLg宿主路径直接用于The Construct。云端Graphical Tools、webpage_address/rosbridge_address及官方评分另待，当前不宣称Task1整体通过。

@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-05 Asia/Shanghai",
+  "repository": "cooper992/cooper12138-cp22",
+  "repository_url": "https://hub.docker.com/r/cooper992/cooper12138-cp22",
+  "platform": "linux/amd64",
+  "published_and_remote_verified": true,
+  "images": [
+    {
+      "target": "cooper992/cooper12138-cp22:fastbot-ros2-gazebo",
+      "push_digest": "sha256:9bbf67fc0a582224315e63fc36f3ae2c48a1a7fe275f3797ae5b2a6ecb65d856",
+      "remote_pull_digest": "sha256:9bbf67fc0a582224315e63fc36f3ae2c48a1a7fe275f3797ae5b2a6ecb65d856",
+      "local_id": "sha256:9bbf67fc0a582224315e63fc36f3ae2c48a1a7fe275f3797ae5b2a6ecb65d856",
+      "platform": "linux/amd64",
+      "verified": true
+    },
+    {
+      "target": "cooper992/cooper12138-cp22:fastbot-ros2-slam",
+      "push_digest": "sha256:7c7cab8d0391da766fefab553f512b70b3ec5a651a21f5ef08a872135c6a5d4c",
+      "remote_pull_digest": "sha256:7c7cab8d0391da766fefab553f512b70b3ec5a651a21f5ef08a872135c6a5d4c",
+      "local_id": "sha256:7c7cab8d0391da766fefab553f512b70b3ec5a651a21f5ef08a872135c6a5d4c",
+      "platform": "linux/amd64",
+      "verified": true
+    },
+    {
+      "target": "cooper992/cooper12138-cp22:fastbot-ros2-webapp",
+      "push_digest": "sha256:985519e331b93a131edca17e415852b7fd0b19c1f4077f23cdd50125318945f1",
+      "remote_pull_digest": "sha256:985519e331b93a131edca17e415852b7fd0b19c1f4077f23cdd50125318945f1",
+      "local_id": "sha256:985519e331b93a131edca17e415852b7fd0b19c1f4077f23cdd50125318945f1",
+      "platform": "linux/amd64",
+      "verified": true
+    }
+  ],
+  "source_commit": "fd82fcfdaf527d655de7b37b13c35bb1aa219638",
+  "deployment_file": "simulation/compose.hub.yaml",
+  "deployment_sha256": "7731a2e215b3c8b4b9c8b6e3a17929298d5461ef77ab368e2d4d6a573fb675d2",
+  "cloud_runtime": "NOT_RUN",
+  "official_grading": "NOT_RUN",
+  "hardware": "NOT_RUN"
+}
