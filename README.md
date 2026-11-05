@@ -60,3 +60,11 @@ Gazebo/SLAM课程工作空间为/ros2_ws，分别默认运行课程场景与Cart
 - 所有实际失败、运行日志、原生截图和清理证据保留在本地忽略目录；正式云端URL/CSP、Compose、学习者整体独立及官方门尚待。
 
 课程记录在项目上一级目录；当前C032为用户授权Coach支撑完成，不是Task1或Task2整体PASS。本轮尚未commit/push；提交须审阅确认。
+
+## 当前学习片段：Compose
+
+simulation/compose.yaml中的构建、域编号、端口、开关与卷映射已由学习者逐片填写。本机资源接线与静止三服务集成、卷重建持久性已验，使用下方运行入口。减少帮助检查、运动/浏览器回归与正式云端另待；学习者作答见attempt.md，当前指针见../progress.md。
+
+## 当前本机 Compose 运行入口
+
+三服务Compose的本机接线与静止集成已验证；参见[运行说明](simulation/COMPOSE_LOCAL.md)。核心compose.yaml由学习者逐片填写，本机资源/WSLg/退出接线由Coach支撑。实际镜像与源hash见compose_runtime.lock.json。命名卷重建持久性通过，当前测试实例/网络已清理、数据卷保留；新增运动/浏览器回归与减少帮助检查另待。此前Docker CLI不可用已恢复，未提交或推送本轮更改。

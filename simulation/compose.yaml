@@ -1,0 +1,43 @@
+# CP23 Task1 Compose — learner-owned incremental implementation.
+# Preparation only: do not run up until runtime wiring and checks are complete.
+services:
+  fastbot-ros2-gazebo:
+    image: fastbot-ros2-gazebo:local
+    build:
+      # TODO(CP23-C033): Set the context relative to this Compose file.
+      context: ..
+      dockerfile: simulation/Dockerfile.gazebo
+    environment:
+      # TODO(CP23-C037): Set the shared ROS domain for this service.
+      ROS_DOMAIN_ID: "193"
+
+  # TODO(CP23-C034): Add the learner-owned SLAM service here.
+  fastbot-ros2-slam:
+    image: fastbot-ros2-slam:local
+    build:
+      context: ..
+      dockerfile: simulation/Dockerfile.slam
+    environment:
+      # TODO(CP23-C037): Set the shared ROS domain for this service.
+      ROS_DOMAIN_ID: "193"
+
+  # TODO(CP23-C035): Add the learner-owned Web service here.
+  fastbot-ros2-webapp:
+    image: fastbot-ros2-webapp:local
+    build:
+      context: ..
+      dockerfile: simulation/Dockerfile.webapp
+    environment:
+      # TODO(CP23-C037): Set the shared ROS domain for this service.
+      ROS_DOMAIN_ID: "193"
+      # TODO(CP23-C040): Add the simulation relay opt-in environment variable.
+      CP23_ENABLE_SIM_MANUAL: "1"
+    # CP23-C038: Local HTTP mapping reviewed; retain it.
+    # TODO(CP23-C039): Add the rosbridge mapping to the same ports list.
+    ports: ["127.0.0.1:18000:8000", "127.0.0.1:19090:9090"]
+    # TODO(CP23-C042): Mount the declared data volume at the application data directory.
+    volumes: ["web-data:/data"]
+
+# Coach support: declare a project-scoped persistent volume.
+volumes:
+  web-data: {}

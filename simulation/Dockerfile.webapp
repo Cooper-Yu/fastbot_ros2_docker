@@ -22,3 +22,6 @@ ENTRYPOINT ["/usr/local/bin/entrypoint_webapp.sh"]
 COPY simulation/dashboard_adapter.py /usr/local/bin/dashboard_adapter.py
 
 COPY simulation/camera_relay.py /usr/local/bin/camera_relay.py
+
+# Coach support: initial named-volume directory writable by the local non-root user.
+RUN install -d -o 1000 -g 1000 /data

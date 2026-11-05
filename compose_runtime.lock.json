@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-05 Asia/Shanghai",
+  "engine": "76a71b5d-f88e-432d-95a8-85bc6a1040cd",
+  "environment": "WSL Ubuntu-22.04 / Humble / Gazebo Classic 11",
+  "parent_commit": "4f4c130d07310020ead183fd119a9220e06b2d30",
+  "images": {
+    "fastbot-ros2-gazebo:local": "sha256:9bbf67fc0a582224315e63fc36f3ae2c48a1a7fe275f3797ae5b2a6ecb65d856",
+    "fastbot-ros2-slam:local": "sha256:7c7cab8d0391da766fefab553f512b70b3ec5a651a21f5ef08a872135c6a5d4c",
+    "fastbot-ros2-webapp:local": "sha256:985519e331b93a131edca17e415852b7fd0b19c1f4077f23cdd50125318945f1"
+  },
+  "source_files": [
+    {
+      "path": "simulation/compose.yaml",
+      "sha256": "f9239b87ff73faa3a63873259f27ad779447439fba503d03ac386d5f13bc33a3"
+    },
+    {
+      "path": "simulation/compose.local.yaml",
+      "sha256": "56b7dc9e142c8c8c72545c7a852b88463dbd2f3fd516f197be86f9226c871bcc"
+    },
+    {
+      "path": "simulation/run_compose_local.bash",
+      "sha256": "eceffac378bfef4f191382c331bf955bae2236705f0ca683732eb235b5e0a097"
+    },
+    {
+      "path": "simulation/local_passwd",
+      "sha256": "613ab24432d40032b92691ee83c4f54968a629084e1aa6a660cbc71e9a3c3ff9"
+    },
+    {
+      "path": "simulation/Dockerfile.webapp",
+      "sha256": "2686ee6b23381d82f2708b2af3d62732daf3e2e00c543f45648e65e7bf5643a2"
+    }
+  ],
+  "mode": "Gazebo+Cartographer+Web stationary live mapping; navigation disabled",
+  "runtime_run": "4b6549ba-d792-4732-8f5f-df17ebacbce2",
+  "checks": [
+    "cross-container scan/odom/clock/TF/map",
+    "HTTP200",
+    "WebSocket real map/JPEG",
+    "named-volume write and Web recreation persistence",
+    "three final services exit0/OOMfalse, network removed, volume retained"
+  ],
+  "not_run": [
+    "new browser UI inspection",
+    "motion/joystick regression under Compose",
+    "independent reduced-help reconstruction",
+    "official grading",
+    "hardware"
+  ]
+}

@@ -1,0 +1,85 @@
+# Coach support for WSL Ubuntu-22.04; learner core remains in compose.yaml.
+x-runtime: &runtime
+  user: "1000:1000"
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  stop_signal: SIGINT
+  stop_grace_period: 20s
+  restart: "no"
+  cpus: 2.0
+  mem_limit: 2g
+  pids_limit: 512
+  tmpfs:
+    - /tmp:rw,nosuid,nodev,size=512m,mode=1777
+  logging:
+    driver: json-file
+    options:
+      max-size: 20m
+      max-file: "1"
+  labels:
+    codex.owner: cp23-compose-course
+    codex.project: checkpoint23-docker-for-robotics
+    codex.run: "${CP23_RUN_ID:?Use the reviewed local launcher}"
+services:
+  fastbot-ros2-gazebo:
+    <<: *runtime
+    cpus: 4.0
+    mem_limit: 4g
+    shm_size: 256m
+    command: [ros2, launch, fastbot_gazebo, one_fastbot_room.launch.py, "headless:=1"]
+    environment:
+      HOME: /tmp
+      ROS_LOG_DIR: /tmp/ros-logs
+      ROS_LOCALHOST_ONLY: "0"
+      DISPLAY: ":0"
+      XDG_RUNTIME_DIR: /run/user/1000
+      QT_X11_NO_MITSHM: "1"
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      LP_NUM_THREADS: "2"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      GAZEBO_IP: 127.0.0.1
+      GAZEBO_MODEL_DATABASE_URI: ""
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=512m,mode=1777
+      - /run/user/1000:rw,nosuid,nodev,size=8m,mode=700,uid=1000,gid=1000
+    volumes:
+      - type: bind
+        source: /mnt/wslg/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: local_passwd
+        target: /etc/passwd
+        read_only: true
+        bind:
+          create_host_path: false
+  fastbot-ros2-slam:
+    <<: *runtime
+    environment:
+      HOME: /tmp
+      ROS_LOG_DIR: /tmp/ros-logs
+      ROS_LOCALHOST_ONLY: "0"
+  fastbot-ros2-webapp:
+    <<: *runtime
+    cpus: 3.0
+    mem_limit: 3g
+    environment:
+      HOME: /tmp
+      ROS_LOG_DIR: /tmp/ros-logs
+      ROS_LOCALHOST_ONLY: "0"
+      CP23_FULL_DASHBOARD: "1"
+      CP23_ENABLE_NAVIGATION: "false"
+networks:
+  default:
+    driver: bridge
+    labels:
+      codex.owner: cp23-compose-course
+      codex.run: "${CP23_RUN_ID:?Use the reviewed local launcher}"
+volumes:
+  web-data:
+    labels:
+      codex.owner: cp23-compose-course

@@ -1,0 +1,2 @@
+root:x:0:0:root:/root:/bin/bash
+cp23:x:1000:1000:CP23:/tmp:/bin/bash
