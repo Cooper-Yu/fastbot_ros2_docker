@@ -74,3 +74,28 @@ simulation/compose.yaml中的构建、域编号、端口、开关与卷映射已
 实际仓库：[cooper992/cooper12138-cp22](https://hub.docker.com/r/cooper992/cooper12138-cp22)，三个tag为fastbot-ros2-gazebo、fastbot-ros2-slam、fastbot-ros2-webapp，平台linux/amd64。三项已推送并从远端拉取核对digest；固定信息见hub_release.lock.json。
 
 simulation/compose.hub.yaml只覆盖镜像名称；可与核心compose.yaml及目标环境配置合并。本机配置仍见simulation/COMPOSE_LOCAL.md，不把WSLg宿主路径直接用于The Construct。云端Graphical Tools、webpage_address/rosbridge_address及官方评分另待，当前不宣称Task1整体通过。
+
+
+## The Construct 云端运行（2026-11-05）
+
+Task1 云端使用 rosject1017054，系统 Ubuntu20.04，Docker26.1.3、docker-compose1.25.0。三个容器内部为 ROS2 Humble/Ubuntu22.04，镜像 digest 见 hub_release.lock.json。simulation/compose.cloud.yaml 是该环境专用接线，部署成 simulation/docker-compose.yml 后运行课程命令。
+
+首次部署时，在云端 simulation 目录准备以下本机相关文件。cloud_passwd 是容器 UID 的最小账号映射，内容可公开，不含认证信息。
+
+~~~bash
+test ! -e .env && test ! -e cloud_passwd || exit 1
+printf 'CP23_RUN_ID=cp23-cloud-manual\nCLOUD_UID=1026\nCLOUD_GID=1026\nDISPLAY=:1\n' > .env
+printf 'root:x:0:0:root:/root:/bin/bash\nuser:x:1026:1026:CP23:/tmp:/bin/bash\n' > cloud_passwd
+cp compose.cloud.yaml docker-compose.yml
+docker-compose config --quiet
+docker-compose pull
+docker-compose up
+~~~
+
+项目应位于 ~/ros2_ws/src/fastbot_ros2_docker。已有运行时先核对当前 .env、容器归属和数据，保留运行记录。普通用户需要 Docker 组权限及有效的 Docker daemon。云端实际部署已保留 .env/cloud_passwd/docker-compose.yml，可直接在该目录运行 docker-compose up。
+
+Graphical Tools 显示 Gazebo。Gazebo 内存上限为 4 GB，初始 2 GB 时 gzclient 触发 cgroup OOM 被终止，调整后重新启动三服务，gzclient 与完整场景恢复。Web 映射宿主7000到容器8000，ROSbridge映射9090。先在交互终端运行 webpage_address 和 rosbridge_address，用返回的 HTTPS 地址打开网页，将 WSS 地址填入 ROSbridge session URL 并 Connect。
+
+云端网页已验证实际地图、课程机器人模型、800×800相机和新鲜遥测。网页摇杆的短距离运动、松开停车已由独立ROS观察确认。当前新建SLAM地图含未知区域，本地保存的整屋地图继续保留。正式课程评分尚未提交，Task2尚未运行。
+
+课程源资产及网页文件已从已验证镜像补齐云端，145个文件SHA256与本地Git源一致。工程开发历史保留在本地Git，云端运行日志在runtime_logs/cloud_deploy_a7177061-b953-440a-a225-66ce590476c8。学习者减少帮助迁移检查按要求跳过，工程功能验证单独记录。

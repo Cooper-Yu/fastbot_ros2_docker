@@ -1,13 +1,13 @@
-# Task1 — 仿真容器化
+# Task1 — FastBot 仿真容器化
 
-当前：C003 COPY片段完成；C004本片完成；C005工作目录实测正确，C006构建/模型展开与职责修补已确认，C007脚本包发现通过，C008脚本复制/直接执行通过，C009默认入口已验，当前C010待填写默认场景命令。
+三个镜像包含 Gazebo 场景、SLAM 和 Web 应用，核心 Dockerfile 与 compose.yaml 由学习者逐片实现。课程运行资产来源和哈希见项目根的 course_asset_manifest.json 与 course_assets.lock.json。
 
-- src/fastbot_description、src/fastbot_gazebo：用户批准的课程资产快照，119个运行文件；保留上游内容，不当作学习者自行实现。
-- Dockerfile.gazebo：已有学习者FROM/RUN；C003已有学习者COPY，119文件镜像内检查通过。
-- SLAM、WebApp及Compose在后续源序片段中实现，当前尚未创建。
+- 本机入口见 COMPOSE_LOCAL.md。
+- Docker Hub 的公开镜像与固定 digest 见 ../hub_release.lock.json。
+- The Construct rosject1017054 的专用配置为 compose.cloud.yaml，部署时作为 docker-compose.yml 使用。该配置直接拉取镜像，Gazebo 内存上限为 4 GB。
+- 云端用户 UID/GID 为 1026，DISPLAY 为 :1。simulation 下需要 .env 与 cloud_passwd，部署步骤和验收状态见项目根 README.md 的云端章节。
+- 容器间使用 ROS_DOMAIN_ID=193，Web 对外端口为 7000，ROSbridge 为 9090。
 
-构建从fastbot_ros2_docker项目根开始，COPY源路径相对于该根目录。当前不宣称Dockerfile、Gazebo场景或三容器集成已经运行通过。
+课程云端的 Graphical Tools 已观察到房间与 FastBot。网页通过课程 webpage_address 和 rosbridge_address 提供的代理地址访问。云端当前是新的 SLAM 会话，旧的本地整屋地图仍保留在本地记录中。
 
-[尝试与说明](../attempt.md) · [资产清单](../course_asset_manifest.json) · [接入核对](../course_scene_integration.md) · [实际验证](../verification.md)
-
-来源为用户确认的CP23 rosject1017054，云端Galactic；目标为Humble镜像内重新构建。资产许可证TODO，发布范围另核对；无Git提交或Hub推送。
+学习记录与精确运行证据保存在上一级训练笔记。工程运行验证与正式评分分别记录，学习者减少帮助迁移检查按用户要求跳过。

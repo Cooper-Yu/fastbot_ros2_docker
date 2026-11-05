@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-05",
+  "rosject": 1017054,
+  "run": "a7177061-b953-440a-a225-66ce590476c8",
+  "status": "TASK1_CLOUD_FUNCTIONAL_VERIFIED",
+  "formal_grading": "NOT_SUBMITTED",
+  "compose_source": "simulation/compose.cloud.yaml",
+  "deployment_target": "simulation/docker-compose.yml",
+  "host_os": "Ubuntu20.04",
+  "docker": "26.1.3",
+  "compose": "1.25.0",
+  "container_environment": "ROS2 Humble / Ubuntu22.04",
+  "gazebo_memory_bytes": 4294967296,
+  "containers": [
+    {
+      "service": "fastbot-ros2-gazebo",
+      "cid": "d336c60fb2ec0637b4063cdad6d49f3f1d799c426014ea88991504924fe79db8",
+      "running": true,
+      "oom_pid1": false,
+      "memory_limit": 4294967296,
+      "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\n",
+      "gzclient_alive": true
+    },
+    {
+      "service": "fastbot-ros2-slam",
+      "cid": "701284c6455811fad5630ec05f96844775cb92c37510af9639601c31eff27d62",
+      "running": true,
+      "oom_pid1": false,
+      "memory_limit": 1073741824
+    },
+    {
+      "service": "fastbot-ros2-webapp",
+      "cid": "6b0358ed568ee1184a37bf7e6dda4dbe2cf7e166dd98f95998ddf5192571bafc",
+      "running": true,
+      "oom_pid1": false,
+      "memory_limit": 1073741824
+    }
+  ],
+  "source": {
+    "files": 145,
+    "all_sha256_match_local_git": true,
+    "source": "published verifiedimage source export",
+    "cloud_git_initialized": false
+  },
+  "gui_verified": true,
+  "map_and_wss_verified": true,
+  "motion_and_release_stop_verified": true,
+  "motion_scope": "short native UI motion before memory repair; stationary data/GUI verified after restart",
+  "evidence": "runtime_logs/cloud_deployment_20261105/functional-acceptance.json",
+  "reduced_help_check": "SKIPPED_BY_USER",
+  "task2": "NOT_RUN"
+}

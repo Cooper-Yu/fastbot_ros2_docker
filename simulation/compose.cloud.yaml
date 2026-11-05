@@ -1,0 +1,91 @@
+# Coach cloud deployment for rosject1017054; core learning files stay unchanged.
+version: "2.4"
+x-runtime: &runtime
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  stop_signal: SIGINT
+  stop_grace_period: 20s
+  restart: "no"
+  cpus: 1.0
+  mem_limit: 1g
+  pids_limit: 512
+  tmpfs:
+    - /tmp:rw,nosuid,nodev,size=512m,mode=1777
+  labels:
+    codex.owner: cp23-cloud-course-1017054
+    codex.project: checkpoint23-docker-for-robotics
+    codex.run: "${CP23_RUN_ID:?Set project run id in .env}"
+  logging:
+    driver: json-file
+    options:
+      max-size: 20m
+      max-file: "1"
+services:
+  fastbot-ros2-gazebo:
+    <<: *runtime
+    # yamllint disable-line rule:line-length
+    image: cooper992/cooper12138-cp22:fastbot-ros2-gazebo@sha256:9bbf67fc0a582224315e63fc36f3ae2c48a1a7fe275f3797ae5b2a6ecb65d856
+    user: "${CLOUD_UID:-1026}:${CLOUD_GID:-1026}"
+    cpus: 2.0
+    mem_limit: 4g
+    shm_size: 256m
+    command: [ros2, launch, fastbot_gazebo, one_fastbot_room.launch.py, "headless:=0"]
+    environment:
+      HOME: /tmp
+      ROS_LOG_DIR: /tmp/ros-logs
+      ROS_DOMAIN_ID: "193"
+      ROS_LOCALHOST_ONLY: "0"
+      DISPLAY: "${DISPLAY:-:1}"
+      XDG_RUNTIME_DIR: "/run/user/${CLOUD_UID:-1026}"
+      QT_X11_NO_MITSHM: "1"
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      LP_NUM_THREADS: "2"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      GAZEBO_IP: 127.0.0.1
+      GAZEBO_MODEL_DATABASE_URI: ""
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=512m,mode=1777
+      - /run/user/1026:rw,nosuid,nodev,size=8m,mode=700,uid=1026,gid=1026
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - ./cloud_passwd:/etc/passwd:ro
+  fastbot-ros2-slam:
+    <<: *runtime
+    # yamllint disable-line rule:line-length
+    image: cooper992/cooper12138-cp22:fastbot-ros2-slam@sha256:7c7cab8d0391da766fefab553f512b70b3ec5a651a21f5ef08a872135c6a5d4c
+    user: "1000:1000"
+    environment:
+      HOME: /tmp
+      ROS_LOG_DIR: /tmp/ros-logs
+      ROS_DOMAIN_ID: "193"
+      ROS_LOCALHOST_ONLY: "0"
+  fastbot-ros2-webapp:
+    <<: *runtime
+    # yamllint disable-line rule:line-length
+    image: cooper992/cooper12138-cp22:fastbot-ros2-webapp@sha256:985519e331b93a131edca17e415852b7fd0b19c1f4077f23cdd50125318945f1
+    user: "1000:1000"
+    environment:
+      HOME: /tmp
+      ROS_LOG_DIR: /tmp/ros-logs
+      ROS_DOMAIN_ID: "193"
+      ROS_LOCALHOST_ONLY: "0"
+      CP23_ENABLE_SIM_MANUAL: "1"
+      CP23_FULL_DASHBOARD: "1"
+      CP23_ENABLE_NAVIGATION: "false"
+    ports:
+      - "7000:8000"
+      - "9090:9090"
+    volumes:
+      - web-data:/data
+networks:
+  default:
+    driver: bridge
+    labels:
+      codex.owner: cp23-cloud-course-1017054
+      codex.run: "${CP23_RUN_ID:?Set project run id in .env}"
+volumes:
+  web-data:
+    labels:
+      codex.owner: cp23-cloud-course-1017054
