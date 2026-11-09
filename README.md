@@ -98,102 +98,57 @@ Open the URL returned by `webpage_address`. Paste the address returned by
 When **Ready · hold to drive** appears, hold and drag the joystick to move;
 release it to stop. Check that the page displays the live SLAM map.
 
-## 3. Task 2: Start the real robot
+## 3. Task 2: Real robot — Grading Guide
 
-From the computer's terminal, connect to the tested FastBot by SSH:
+Use the FastBot's SSH terminal for steps 1–3. Docker, the device configuration and
+images must already be prepared; see [first-time setup](real/SETUP.md) if needed.
+
+### 1. Start the two containers
 
 ```bash
 ssh yg-fastbot@yg-fastbot.local
-```
-
-Use your robot's SSH username and address if they differ. A prompt such as
-`cooper@WIN-...` is the computer/WSL shell; the tested robot prompt is
-`yg-fastbot@yg-fastbot`.
-
-Run the following commands **on the ARM64 FastBot computer**, with its motor controller,
-N10 LiDAR and camera connected. The tested profile uses Ubuntu 22.04, host UID/GID
-`1000:1000`, and device groups `dialout=20` and `video=44`.
-
-```bash
 cd ~/ros2_ws/src/fastbot_ros2_docker/real
-python3 prepare_env.py
-```
-
-Run preparation only when `real/.env` is absent. It discovers device paths and
-creates the configuration without starting hardware. If `.env` already exists,
-review and retain it. Check `MOTOR_DEVICE`, `LIDAR_DEVICE`, `CAMERA_DEVICE`,
-`ROS_BASE`, `ROS_DOMAIN_ID`, and `CP23_RUN_ID` against this robot.
-
-The robot uses Compose V2. If the guide's `docker-compose` spelling is missing,
-install the repository's wrapper for the already installed Compose V2:
-
-```bash
-if ! command -v docker-compose >/dev/null 2>&1; then
-  install -D -m 755 docker-compose "$HOME/.local/bin/docker-compose"
-fi
-export PATH="$HOME/.local/bin:$PATH"
-sudo systemctl enable --now docker
 docker-compose up
 ```
 
-The two application services are `fastbot-ros2-real` and `fastbot-ros2-slam-real`.
-Published images are used when available; source builds are documented in
-[the real-robot guide](real/README.md).
-
-In another robot terminal:
+Keep this terminal running. In another SSH terminal:
 
 ```bash
 docker ps
+```
+
+Expect `fastbot-ros2-real` and `fastbot-ros2-slam-real` to be running.
+
+### 2. Check the robot topics
+
+In the robot's SSH terminal:
+
+```bash
 source /opt/ros/humble/setup.bash
 export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 unset CYCLONEDDS_URI
 ros2 topic list --no-daemon
 ```
 
-Check for `/fastbot/scan`, `/fastbot_camera/image_raw`, `/fastbot/cmd_vel`, and `/map`.
+Check `/fastbot/scan` (LiDAR), `/fastbot_camera/image_raw` (camera),
+`/fastbot/cmd_vel` (velocity command), and `/map`.
 
-The Construct may set `CYCLONEDDS_URI` to a Husarnet-specific configuration.
-The tested LAN/WSL connection uses the default Cyclone DDS interfaces instead;
-`unset` changes only the current shell. If only `/parameter_events` and `/rosout`
-appear, clear the ROS CLI daemon cache and check again:
+### 3. Check automatic startup after a power cycle
 
-```bash
-ros2 daemon stop
-ros2 topic list --no-daemon
-```
-
-### Power-on recovery
-
-Both services use `restart: unless-stopped`. Leave them running and shut down the Pi:
+Leave the containers running, then shut down the Pi:
 
 ```bash
 sudo poweroff
 ```
 
-After shutdown, disconnect and restore power. Reconnect from the computer:
+After shutdown, disconnect and restore power. Reconnect by SSH and repeat
+`docker ps` and the topic check above **without running `docker-compose up` first**.
+Both containers and the topics must recover automatically.
 
-```bash
-ssh yg-fastbot@yg-fastbot.local
-```
+### 4. Check from the external computer
 
-On the Pi, check automatic recovery **without running `docker-compose up` first**:
-
-```bash
-docker ps
-source /opt/ros/humble/setup.bash
-export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-unset CYCLONEDDS_URI
-ros2 topic list --no-daemon
-```
-
-Both application containers and the sensor/map topics should be present.
-Containers deliberately stopped with `Ctrl+C` must be started again before this test.
-
-### External computer: WSL topics and RViz2
-
-Use a **local WSL terminal, not an SSH shell on the Pi**. The tested bridge/viewer
-must already be running; first-time setup is in
-[the WSL connection guide](real/README.md#external-computer-and-wsl).
+In a **local WSL terminal**, with the [WSL connection](real/SETUP.md#external-computer-and-wsl)
+already prepared:
 
 ```bash
 source /opt/ros/humble/setup.bash
@@ -203,10 +158,9 @@ ros2 topic list --no-daemon
 rviz2 -d ~/ros2_ws/src/fastbot_ros2_docker/real/real_mapping.rviz
 ```
 
-Expect the same robot topics, **Global Status: Ok**, and a live map with
-**Fixed Frame = map**. If an RViz viewer is already open, inspect it rather than
-starting another viewer. Pi domain 0 and WSL domain 194 are connected by the
-project's optional network bridge; do not interchange these settings.
+Check that the robot topics are visible and RViz2 displays the live `/map` with
+**Fixed Frame = map** and **Global Status: Ok**. Use an existing viewer if one is
+already open. Pi domain 0 and WSL domain 194 belong to this project's tested bridge setup.
 
 ## Verification and references
 
