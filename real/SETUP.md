@@ -13,14 +13,8 @@ image, odometry and TF data; Cartographer consumes scan/odometry and publishes
 
 ## Connect to the robot
 
-From the computer, open an SSH session:
-
-```bash
-ssh yg-fastbot@yg-fastbot.local
-```
-
-Replace the username and hostname for another robot. Run device preparation and
-application startup on the Pi, not in the local WSL shell.
+Connect to the real robot via SSH. Run device preparation and application startup
+on the robot, not in the local WSL shell.
 
 ## Download, configure and start
 

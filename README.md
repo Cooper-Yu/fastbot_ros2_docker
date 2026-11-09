@@ -105,8 +105,9 @@ images must already be prepared; see [first-time setup](real/SETUP.md) if needed
 
 ### 1. Start the two containers
 
+Connect to the real robot via SSH, then run:
+
 ```bash
-ssh yg-fastbot@yg-fastbot.local
 cd ~/ros2_ws/src/fastbot_ros2_docker/real
 docker-compose up
 ```

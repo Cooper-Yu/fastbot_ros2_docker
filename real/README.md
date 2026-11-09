@@ -6,13 +6,7 @@ For a new robot, use [SETUP.md](SETUP.md) once before these checks.
 
 ## 1. Start the containers
 
-On the computer, connect to the FastBot:
-
-```bash
-ssh yg-fastbot@yg-fastbot.local
-```
-
-On the robot:
+Connect to the real robot via SSH, then run:
 
 ```bash
 cd ~/ros2_ws/src/fastbot_ros2_docker/real
