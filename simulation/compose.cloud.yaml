@@ -27,7 +27,7 @@ services:
     # yamllint disable-line rule:line-length
     image: cooper992/cooper12138-cp22:fastbot-ros2-gazebo@sha256:9bbf67fc0a582224315e63fc36f3ae2c48a1a7fe275f3797ae5b2a6ecb65d856
     user: "${CLOUD_UID:-1026}:${CLOUD_GID:-1026}"
-    cpus: 2.0
+    cpus: 4.0
     mem_limit: 4g
     shm_size: 256m
     command: [ros2, launch, fastbot_gazebo, one_fastbot_room.launch.py, "headless:=0"]

@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-09",
   "rosject": 1017054,
   "run": "a7177061-b953-440a-a225-66ce590476c8",
-  "status": "TASK1_CLOUD_FUNCTIONAL_VERIFIED",
+  "status": "TASK1_CLOUD_FUNCTIONAL_VERIFIED_AFTER_CPU_REPAIR",
   "formal_grading": "NOT_SUBMITTED",
   "compose_source": "simulation/compose.cloud.yaml",
   "deployment_target": "simulation/docker-compose.yml",
@@ -13,40 +13,74 @@
   "gazebo_memory_bytes": 4294967296,
   "containers": [
     {
-      "service": "fastbot-ros2-gazebo",
-      "cid": "d336c60fb2ec0637b4063cdad6d49f3f1d799c426014ea88991504924fe79db8",
-      "running": true,
-      "oom_pid1": false,
+      "gzclient_alive": true,
       "memory_limit": 4294967296,
+      "cpus": 4.0,
+      "running": true,
+      "service": "fastbot-ros2-gazebo",
       "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\n",
-      "gzclient_alive": true
+      "cid": "d346e79493027fe352ec9a4d0f384b93a342cf81ec68e0a023f53f4588715405"
     },
     {
+      "gzclient_alive": false,
+      "memory_limit": 1073741824,
+      "cpus": 1.0,
+      "running": true,
       "service": "fastbot-ros2-slam",
-      "cid": "701284c6455811fad5630ec05f96844775cb92c37510af9639601c31eff27d62",
-      "running": true,
-      "oom_pid1": false,
-      "memory_limit": 1073741824
+      "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\n",
+      "cid": "d038a07260d2d6b766cdd9f17ca5680562585cfc622d03716fc2373caabdbf46"
     },
     {
-      "service": "fastbot-ros2-webapp",
-      "cid": "6b0358ed568ee1184a37bf7e6dda4dbe2cf7e166dd98f95998ddf5192571bafc",
+      "gzclient_alive": false,
+      "memory_limit": 1073741824,
+      "cpus": 1.0,
       "running": true,
-      "oom_pid1": false,
-      "memory_limit": 1073741824
+      "service": "fastbot-ros2-webapp",
+      "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\n",
+      "cid": "ee3ffa733d3b95064297bb47895f97606d42d276b4b24219e29c31c28a3333c1"
     }
   ],
   "source": {
     "files": 145,
     "all_sha256_match_local_git": true,
     "source": "published verifiedimage source export",
-    "cloud_git_initialized": false
+    "cloud_git_initialized": false,
+    "evidence_date": "2026-11-05; historical snapshot, not rechecked as a current source hash comparison"
   },
   "gui_verified": true,
   "map_and_wss_verified": true,
   "motion_and_release_stop_verified": true,
-  "motion_scope": "short native UI motion before memory repair; stationary data/GUI verified after restart",
-  "evidence": "runtime_logs/cloud_deployment_20261105/functional-acceptance.json",
+  "motion_scope": "Native UI continuous hold 4s, independent ROS motion and release stop; camera and feedback protections unchanged",
+  "evidence": "runtime_logs/grading_guide_20261109/cpu4-repair-receipt.json",
   "reduced_help_check": "SKIPPED_BY_USER",
-  "task2": "NOT_RUN"
+  "task2": "FUNCTIONAL_VERIFIED; see real/runtime.lock.json",
+  "gazebo_cpu_cores": 4.0,
+  "cloud_compose_sha256": "2a532f055d64e63e4f1dd9a488f89d1a7e69925d144240017c7cee8ba94de23f",
+  "local_cloud_compose_sha256": "2a532f055d64e63e4f1dd9a488f89d1a7e69925d144240017c7cee8ba94de23f",
+  "continuous_hold": {
+    "odom_samples": 2498,
+    "seconds": 4,
+    "browser_feedback_loss_samples": 0,
+    "nonzero_commands": 81,
+    "observed_motion": true,
+    "stopped": true,
+    "max_linear_mps": 0.037820512820512825,
+    "last_five_commands_zero": true
+  },
+  "feedback_timing": {
+    "cpu4_scan": {
+      "max": 0.377,
+      "mean": 0.257,
+      "over_0_5": 0
+    },
+    "baseline_scan": {
+      "max": 0.698,
+      "mean": 0.514,
+      "over_0_5": 21
+    },
+    "baseline_rtf": 0.1930684779146643,
+    "cpu4_rtf": 0.3904076339462716,
+    "bad_status_before": 6,
+    "bad_status_after": 0
+  }
 }

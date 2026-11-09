@@ -117,3 +117,6 @@ cd fastbot_ros2_docker
 ```
 
 Task1仿真配置/启动见上文The Construct云端运行和simulation/COMPOSE_LOCAL.md。Task2真机配置、docker-compose兼容入口、启动及ROS环境准备见[real/README.md](real/README.md)。两个任务分别在simulation和real目录运行docker-compose up，避免在仓库根目录启动错误的场景。
+
+
+2026-11-09持续摇杆修复：云端完整GUI/相机使用Gazebo 4核CPU/4GiB上限。此前2核限流使10Hz仿真雷达的实际间隔超过0.5秒，触发停车；4核后持续按住4秒、真实运动和松开停车复验通过。反馈失鲜保护与命令看门狗保持，镜像不需重新构建。资源不足时先查CPU限流和真实数据间隔，不关闭保护。详见GRADING_GUIDE_AUDIT.md及cloud_runtime.lock.json。
