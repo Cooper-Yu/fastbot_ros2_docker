@@ -8,7 +8,7 @@
 
 同一最终镜像已实际完成Living room、Doorway、Bedroom三个目标，松开及未发零速的输入断线均归零。该完整网页/导航是用户授权的Coach工程支撑，非学习者独立PASS。复现入口：[完整网页运行说明](simulation/dashboard/README.md)，环境/镜像和源码见dashboard_runtime.lock.json。测试实例已清理，地图/航点与日志保留。
 
-Task1仍STUDYING：课程三镜像/Compose核心、减少帮助整体独立检查、正式云端URL/CSP与官方评分另待；Task2真机未运行。本轮未commit/push。
+2026-11-09：Task1云端和Task2真机已按指南逐项功能复核，详见[评分指南审计](GRADING_GUIDE_AUDIT.md)。Task2包含公开仓库实际克隆及重新上电恢复；源码已推送GitHub，五个应用镜像已发布Docker Hub。正式评分NOT_SUBMITTED，学习者独立检查SKIPPED_BY_USER，不记独立PASS。
 
 ## 目录与来源
 
@@ -24,7 +24,7 @@ Task1仍STUDYING：课程三镜像/Compose核心、减少帮助整体独立检�
 - webapp_assets.lock.json：参考网页来源、原始hash与本项目适配记录。
 - .vscode/、.editorconfig、.prettierrc.json、.yamllint：编辑与检查支持，不代表全部编辑器功能均已验证。
 
-课程资产来自用户确认的rosject1017054，来源环境为Galactic，本项目在Humble运行。保留上游许可证标记；课程及参考资产的外部发布许可仍需核对。本地Git记录不等于已获Docker Hub或远端发布授权；目前未推送仓库或镜像。
+课程资产来自用户确认的rosject1017054，来源环境为Galactic，本项目在Humble运行。保留上游许可证标记；课程及参考资产的外部发布许可仍需核对。本地Git记录不等于已获Docker Hub或远端发布授权；用户已明确授权并完成源码及镜像公开发布，来源与上游许可证标记保持。
 
 ## 构建
 
@@ -57,13 +57,13 @@ Gazebo/SLAM课程工作空间为/ros2_ws，分别默认运行课程场景与Cart
 - 同一最终镜像中三个房间航点实际到达；原生松开约8ms输出零、独立客户端不发零速即断线后约0.339s输出零，均观察到停稳。仅本轮样本，不承诺硬实时/真机停车或精度校准。
 - 22个运行文件与所测镜像SHA256一致，镜像ID/源码hash见dashboard_runtime.lock.json。
 - Node/Bash/Python语法、XML、选定Ruff、ROSbridge分片合同和Git差异检查通过。ShellCheck及部分VS Code界面诊断仍未验证；不批量重排旧源码。
-- 所有实际失败、运行日志、原生截图和清理证据保留在本地忽略目录；正式云端URL/CSP、Compose、学习者整体独立及官方门尚待。
+- 所有实际失败、运行日志、原生截图和清理证据保留在本地忽略目录；当前云端/Compose复核见GRADING_GUIDE_AUDIT.md；正式评分待提交，学习者整体独立按用户要求跳过。
 
-课程记录在项目上一级目录；当前C032为用户授权Coach支撑完成，不是Task1或Task2整体PASS。本轮尚未commit/push；提交须审阅确认。
+课程记录在项目上一级目录；C032等网页支撑不是学习者整体PASS。当前工程功能及Git发布状态以上方当前状态和评分审计为准。
 
-## 当前学习片段：Compose
+## Compose 学习与本机接线记录
 
-simulation/compose.yaml中的构建、域编号、端口、开关与卷映射已由学习者逐片填写。本机资源接线与静止三服务集成、卷重建持久性已验，使用下方运行入口。减少帮助检查、运动/浏览器回归与正式云端另待；学习者作答见attempt.md，当前指针见../progress.md。
+simulation/compose.yaml中的构建、域编号、端口、开关与卷映射已由学习者逐片填写。本机资源接线与静止三服务集成、卷重建持久性已验，使用下方运行入口。后续运动/浏览器/云端回归已完成；减少帮助检查SKIPPED_BY_USER。学习者作答见attempt.md，当前指针见../progress.md。
 
 ## 当前本机 Compose 运行入口
 
@@ -73,10 +73,10 @@ simulation/compose.yaml中的构建、域编号、端口、开关与卷映射已
 
 实际仓库：[cooper992/cooper12138-cp22](https://hub.docker.com/r/cooper992/cooper12138-cp22)，三个tag为fastbot-ros2-gazebo、fastbot-ros2-slam、fastbot-ros2-webapp，平台linux/amd64。三项已推送并从远端拉取核对digest；固定信息见hub_release.lock.json。
 
-simulation/compose.hub.yaml只覆盖镜像名称；可与核心compose.yaml及目标环境配置合并。本机配置仍见simulation/COMPOSE_LOCAL.md，不把WSLg宿主路径直接用于The Construct。云端Graphical Tools、webpage_address/rosbridge_address及官方评分另待，当前不宣称Task1整体通过。
+simulation/compose.hub.yaml只覆盖镜像名称；可与核心compose.yaml及目标环境配置合并。本机配置仍见simulation/COMPOSE_LOCAL.md，不把WSLg宿主路径直接用于The Construct。云端Graphical Tools、webpage_address/rosbridge_address及摇杆/地图已复核；官方评分未提交，不记学习者整体PASS。
 
 
-## The Construct 云端运行（2026-11-05）
+## The Construct 云端运行（2026-11-09复核）
 
 Task1 云端使用 rosject1017054，系统 Ubuntu20.04，Docker26.1.3、docker-compose1.25.0。三个容器内部为 ROS2 Humble/Ubuntu22.04，镜像 digest 见 hub_release.lock.json。simulation/compose.cloud.yaml 是该环境专用接线，部署成 simulation/docker-compose.yml 后运行课程命令。
 
@@ -92,11 +92,13 @@ docker-compose pull
 docker-compose up
 ~~~
 
+若按digest拉取后`docker images`显示`<none>`，在仓库根目录运行`python3 simulation/tag_published_images.py`；它核对固定digest并为同一内容补回课程标签，不重新构建。完整GUI和相机需要足够的rosject外层额度；本轮曾因2.5GiB外层限制发生OOM，恢复资源后的完整配置才通过，详见审计。
+
 项目应位于 ~/ros2_ws/src/fastbot_ros2_docker。已有运行时先核对当前 .env、容器归属和数据，保留运行记录。普通用户需要 Docker 组权限及有效的 Docker daemon。云端实际部署已保留 .env/cloud_passwd/docker-compose.yml，可直接在该目录运行 docker-compose up。
 
 Graphical Tools 显示 Gazebo。Gazebo 内存上限为 4 GB，初始 2 GB 时 gzclient 触发 cgroup OOM 被终止，调整后重新启动三服务，gzclient 与完整场景恢复。Web 映射宿主7000到容器8000，ROSbridge映射9090。先在交互终端运行 webpage_address 和 rosbridge_address，用返回的 HTTPS 地址打开网页，将 WSS 地址填入 ROSbridge session URL 并 Connect。
 
-云端网页已验证实际地图、课程机器人模型、800×800相机和新鲜遥测。网页摇杆的短距离运动、松开停车已由独立ROS观察确认。当前新建SLAM地图含未知区域，本地保存的整屋地图继续保留。正式课程评分尚未提交，Task2尚未运行。
+云端网页已验证实际地图、课程机器人模型、800×800相机和新鲜遥测。网页摇杆的短距离运动、松开停车已由独立ROS观察确认。当前新建SLAM地图含未知区域，本地保存的整屋地图继续保留。正式课程评分尚未提交；Task2已完成真机和本机WSL外部验收。
 
 课程源资产及网页文件已从已验证镜像补齐云端，145个文件SHA256与本地Git源一致。工程开发历史保留在本地Git，云端运行日志在runtime_logs/cloud_deploy_a7177061-b953-440a-a225-66ce590476c8。学习者减少帮助迁移检查按要求跳过，工程功能验证单独记录。
 
