@@ -103,3 +103,15 @@ Graphical Tools 显示 Gazebo。Gazebo 内存上限为 4 GB，初始 2 GB 时 gz
 ## Task2 真机运行（2026-11-09）
 
 入口见[real/README.md](real/README.md)。两个linux/arm64镜像在Pi原生构建，真机传感器/SLAM、本机WSL外部话题/RViz2，以及实际关机断电后重新上电自动恢复已验证。两个ARM镜像已发布并从远端拉取核对digest；正式评分尚未提交，学习者独立检查SKIPPED_BY_USER。
+
+## 评分指南源码入口
+
+公开源码：https://github.com/Cooper-Yu/fastbot_ros2_docker
+
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/Cooper-Yu/fastbot_ros2_docker.git
+cd fastbot_ros2_docker
+```
+
+Task1仿真配置/启动见上文The Construct云端运行和simulation/COMPOSE_LOCAL.md。Task2真机配置、docker-compose兼容入口、启动及ROS环境准备见[real/README.md](real/README.md)。两个任务分别在simulation和real目录运行docker-compose up，避免在仓库根目录启动错误的场景。

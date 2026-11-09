@@ -88,6 +88,38 @@ python3 real/check_runtime.py
 
 本次实际显示Global Status: Ok、实时地图和激光。12秒录包含scan118/odom117/map13/tf2479/tf_static1。地图仅是当前传感器实际可见区域，不代表整个场地已探索完成。硬件模型仍为CP21近似外参，未重新标定。
 
-## 源码取得
+## 源码取得与评分命令
 
-本项目Git历史目前仍保存在本地，尚未配置Git远端。之后将源码推送到自己的仓库后，可使用git clone <你的源码仓库URL> ~/ros2_ws/src/fastbot_ros2_docker，再进入real目录并运行python3 prepare_env.py生成本机.env。不要提交.env、SSH密钥或runtime_logs。当前Pi部署与WSL源码已对应到source.lock.json；Docker Hub用于分发镜像，不代替Git源码仓库。
+公开源码仓库：https://github.com/Cooper-Yu/fastbot_ros2_docker
+
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/Cooper-Yu/fastbot_ros2_docker.git
+cd fastbot_ros2_docker/real
+python3 prepare_env.py
+```
+
+prepare_env.py只生成本机.env、解析设备路径，不启动设备。已有.env时先审阅，不覆盖现有运行的设备或run id。Pi应安装Docker并启用开机服务，当前用户有Docker组权限；UID1000、dialout20/video44需按实际主机确认。
+
+课程使用docker-compose拼写；当前Pi安装的是Docker Compose V2。若该命令不存在，用本仓库的两行兼容入口调用已安装的V2，无需安装旧Python版Compose：
+
+```bash
+if ! command -v docker-compose >/dev/null 2>&1; then
+  install -D -m 755 docker-compose "$HOME/.local/bin/docker-compose"
+fi
+export PATH="$HOME/.local/bin:$PATH"
+docker-compose version
+docker-compose up
+```
+
+在另一个终端执行docker ps。首次无镜像缓存时Compose会从Docker Hub获取两个已发布标签，镜像身份见release.lock.json；需要正确的Hub网络。DockerHub镜像网络受限时，本次部署使用已核对的软件等价镜像预载，须在验收报告中记录缓存/预载，不声称由up重新下载。
+
+机器人内查看ROS话题前，准备宿主ROS环境和与容器相同的通信设置：
+
+```bash
+source /opt/ros/humble/setup.bash
+export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ros2 topic list
+```
+
+如果在本机WSL查看，使用上文WSL通信桥并将域设为194。不要将Pi域0命令与WSL域194设置混用。.env、SSH密钥、runtime_logs不提交到仓库。

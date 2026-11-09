@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Host CLI compatibility for the course's docker-compose spelling.
+exec docker compose "$@"
