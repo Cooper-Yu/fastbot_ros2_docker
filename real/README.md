@@ -11,6 +11,17 @@ The two containers run ROS 2 Humble. The driver container publishes real scan,
 image, odometry and TF data; Cartographer consumes scan/odometry and publishes
 `/map`. Both use host networking and ROS domain 0.
 
+## Connect to the robot
+
+From the computer, open an SSH session:
+
+```bash
+ssh yg-fastbot@yg-fastbot.local
+```
+
+Replace the username and hostname for another robot. Run device preparation and
+application startup on the Pi, not in the local WSL shell.
+
 ## Download, configure and start
 
 ```bash
@@ -43,11 +54,21 @@ Keep that terminal running. In another terminal:
 docker ps
 source /opt/ros/humble/setup.bash
 export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-ros2 topic list
+unset CYCLONEDDS_URI
+ros2 topic list --no-daemon
 ```
 
 Expect `fastbot-ros2-real` and `fastbot-ros2-slam-real`, plus topics
 `/fastbot/scan`, `/fastbot_camera/image_raw`, `/fastbot/cmd_vel` and `/map`.
+
+The Construct shell may inherit a Husarnet-specific `CYCLONEDDS_URI`. Unsetting
+it selects the default interfaces for this tested LAN connection, only in the
+current shell. If the CLI still shows only `/parameter_events` and `/rosout`, run:
+
+```bash
+ros2 daemon stop
+ros2 topic list --no-daemon
+```
 
 To explicitly download the published images before starting:
 
@@ -75,9 +96,18 @@ Both services use `restart: unless-stopped`. Leave them running before shutdown:
 sudo poweroff
 ```
 
-After shutdown, disconnect and restore power. Reconnect by SSH and check
-`docker ps` and the topics without running `up` first. Deliberately stopped
-containers need to be started again before testing this behavior.
+After shutdown, disconnect and restore power. Reconnect by SSH, then run these
+commands on the Pi without starting the containers manually:
+
+```bash
+docker ps
+source /opt/ros/humble/setup.bash
+export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+unset CYCLONEDDS_URI
+ros2 topic list --no-daemon
+```
+
+Deliberately stopped containers need to be started again before this test.
 
 ## External computer and WSL
 
@@ -115,11 +145,13 @@ In another WSL terminal:
 ```bash
 source /opt/ros/humble/setup.bash
 export ROS_DOMAIN_ID=194 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-ros2 topic list
-python3 real/check_runtime.py
+unset CYCLONEDDS_URI
+ros2 topic list --no-daemon
+rviz2 -d ~/ros2_ws/src/fastbot_ros2_docker/real/real_mapping.rviz
 ```
 
-Check live map and TF data in RViz2. Do not reuse the Pi's domain-0 settings in
+If the viewer is already open, inspect it instead of opening a second RViz window.
+Check **Global Status: Ok**, live map and TF data in RViz2. Do not reuse the Pi's domain-0 settings in
 this WSL bridge terminal. The current map contains only observed space; the robot
 model uses the inherited CP21 approximation, with no new extrinsic calibration.
 

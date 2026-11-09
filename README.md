@@ -100,7 +100,17 @@ release it to stop. Check that the page displays the live SLAM map.
 
 ## 3. Task 2: Start the real robot
 
-Run these commands **on the ARM64 FastBot computer**, with its motor controller,
+From the computer's terminal, connect to the tested FastBot by SSH:
+
+```bash
+ssh yg-fastbot@yg-fastbot.local
+```
+
+Use your robot's SSH username and address if they differ. A prompt such as
+`cooper@WIN-...` is the computer/WSL shell; the tested robot prompt is
+`yg-fastbot@yg-fastbot`.
+
+Run the following commands **on the ARM64 FastBot computer**, with its motor controller,
 N10 LiDAR and camera connected. The tested profile uses Ubuntu 22.04, host UID/GID
 `1000:1000`, and device groups `dialout=20` and `video=44`.
 
@@ -136,20 +146,67 @@ In another robot terminal:
 docker ps
 source /opt/ros/humble/setup.bash
 export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-ros2 topic list
+unset CYCLONEDDS_URI
+ros2 topic list --no-daemon
 ```
 
 Check for `/fastbot/scan`, `/fastbot_camera/image_raw`, `/fastbot/cmd_vel`, and `/map`.
 
-Both services use `restart: unless-stopped`. To test power-on recovery, leave the
-containers running, shut the robot down with `sudo poweroff`, then disconnect and
-restore power after shutdown. Reconnect by SSH and check `docker ps` and the ROS
-topics again, **without manually starting the containers**. Containers deliberately
-stopped with `Ctrl+C` must be started again before this test.
+The Construct may set `CYCLONEDDS_URI` to a Husarnet-specific configuration.
+The tested LAN/WSL connection uses the default Cyclone DDS interfaces instead;
+`unset` changes only the current shell. If only `/parameter_events` and `/rosout`
+appear, clear the ROS CLI daemon cache and check again:
 
-On an external ROS 2 computer, check the topics and display `/map` in RViz2 with
-**Fixed Frame = map**. The tested local WSL connection and viewer instructions are
-in [real/README.md](real/README.md#external-computer-and-wsl).
+```bash
+ros2 daemon stop
+ros2 topic list --no-daemon
+```
+
+### Power-on recovery
+
+Both services use `restart: unless-stopped`. Leave them running and shut down the Pi:
+
+```bash
+sudo poweroff
+```
+
+After shutdown, disconnect and restore power. Reconnect from the computer:
+
+```bash
+ssh yg-fastbot@yg-fastbot.local
+```
+
+On the Pi, check automatic recovery **without running `docker-compose up` first**:
+
+```bash
+docker ps
+source /opt/ros/humble/setup.bash
+export ROS_DOMAIN_ID=0 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+unset CYCLONEDDS_URI
+ros2 topic list --no-daemon
+```
+
+Both application containers and the sensor/map topics should be present.
+Containers deliberately stopped with `Ctrl+C` must be started again before this test.
+
+### External computer: WSL topics and RViz2
+
+Use a **local WSL terminal, not an SSH shell on the Pi**. The tested bridge/viewer
+must already be running; first-time setup is in
+[the WSL connection guide](real/README.md#external-computer-and-wsl).
+
+```bash
+source /opt/ros/humble/setup.bash
+export ROS_DOMAIN_ID=194 ROS_LOCALHOST_ONLY=0 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+unset CYCLONEDDS_URI
+ros2 topic list --no-daemon
+rviz2 -d ~/ros2_ws/src/fastbot_ros2_docker/real/real_mapping.rviz
+```
+
+Expect the same robot topics, **Global Status: Ok**, and a live map with
+**Fixed Frame = map**. If an RViz viewer is already open, inspect it rather than
+starting another viewer. Pi domain 0 and WSL domain 194 are connected by the
+project's optional network bridge; do not interchange these settings.
 
 ## Verification and references
 

@@ -75,11 +75,11 @@ class ManualBridge(Node):
 
     def readiness(self, now):
         if self.last_odom is None or now - self.last_odom > ODOM_MAX_AGE:
-            return False, '等待新鲜里程计反馈'
+            return False, 'Waiting for fresh odometry feedback'
         publishers = self.get_publishers_info_by_topic('/fastbot/cmd_vel')
         if len(publishers) != 1 or publishers[0].node_name != self.get_name():
-            return False, '速度输出存在其他发布者或发现尚未完成'
-        return True, '仿真手动控制就绪'
+            return False, 'Another velocity publisher is present or discovery is incomplete'
+        return True, 'Simulation manual control ready'
 
     def tick(self):
         now = time.monotonic()

@@ -1,31 +1,56 @@
-# 本机三容器建图运行
+# Local Three-Container Mapping
 
-环境：WSL Ubuntu-22.04 / ROS 2 Humble / Gazebo Classic 11。学习者核心为compose.yaml；compose.local.yaml、local_passwd与run_compose_local.bash是Coach本机支撑。与dashboard目录的二容器保存地图Nav2模式分别使用。
+Target: WSL Ubuntu-22.04, ROS 2 Humble and Gazebo Classic 11.
+`compose.yaml` defines the three application services. `compose.local.yaml`,
+`local_passwd` and `run_compose_local.bash` provide the local runtime wiring.
+This profile is separate from the two-container saved-map navigation profile.
 
-## 准备镜像
+## Build the images
 
-在工程根运行，无构建时间上限：
+From the repository root:
 
-~~~bash
+```bash
 CP23_RUN_ID=build-only docker compose -p cp23-course-local -f simulation/compose.yaml -f simulation/compose.local.yaml build
-~~~
+```
 
-## 启动与停止
+## Start and stop
 
-~~~bash
+```bash
 bash simulation/run_compose_local.bash
-~~~
+```
 
-脚本生成run id并记录实际配置/镜像，默认观察1800秒，Ctrl+C或该运行日志目录的stop.request停止。可用CP23_SESSION_SECONDS正整数指定观察长度；这是运行观察范围，不是构建限时。已有同项目容器时拒绝接管，先由原运行负责停止。脚本只启动已有镜像，不在运行时下载/构建。
+The launcher creates a run identifier and records configuration/image identities.
+Its default observation window is 1800 seconds. Set a positive
+`CP23_SESSION_SECONDS` to change it. Stop with `Ctrl+C` or the run log directory's
+`stop.request` file. This observation window is not an image-build timeout.
+The launcher refuses to take over an existing run of the same project and uses
+already-built images rather than downloading or building at application startup.
 
-浏览器访问http://127.0.0.1:18000/，显式连接ws://127.0.0.1:19090。当前为实时SLAM建图模式，无Nav2保存地图导航；同域193，不接硬件，不自动发送运动。端口是否空闲在启动时仍需确认。
+Open <http://127.0.0.1:18000/> and explicitly connect to
+`ws://127.0.0.1:19090`. This profile runs live Cartographer mapping, without saved-map
+Nav2 navigation. It uses ROS domain 193 and does not connect to physical hardware
+or send motion automatically. The HTTP and ROSbridge ports must be available.
 
-Gazebo采用headless:=1，仅无交互Gazebo窗口，仍经WSLg X11只读socket渲染真实相机。资源上限Gazebo4核/4GiB、SLAM2核/2GiB、Web3核/3GiB；只读nonroot1000、cap-drop与tmpfs，使用SIGINT/20秒停止，不设自动重启。local_passwd仅合成非敏感UID映射，不包含宿主账号凭据。
+Gazebo uses `headless:=1`: there is no interactive Gazebo client window, while
+camera rendering still uses the read-only WSLg X11 socket. CPU/memory limits are
+Gazebo 4 cores/4 GiB, SLAM 2 cores/2 GiB and Web 3 cores/3 GiB. Applications run as
+non-root UID 1000 with read-only filesystems, dropped capabilities and temporary
+writable directories. Shutdown uses SIGINT with a 20-second grace period.
+`local_passwd` is a synthetic UID mapping, not a host credential file.
 
-Web将web-data命名卷接到/data。项目卷名cp23-course-local_web-data，保留在清理后；删除容器/网络不删除卷。Dockerfile内/data初始目录归1000:1000，供新卷初始化；实际写入与重建保留已验。不要使用删除卷的选项进行日常停止。
+The `web-data` named volume mounts at `/data`. Its project name is
+`cp23-course-local_web-data`; removing containers/networks preserves it. New-volume
+initialization and data persistence across container recreation were tested.
+Do not remove the volume during routine shutdown.
 
-## 已验范围与剩余门
+## Verification scope
 
-2026-11-05：三镜像实际构建、三服务真实ROS测量→Cartographer/map→Web转接，HTTP200及WebSocket地图/JPEG通过；测试航点写入后强制重建Web，完整文档一致，随后仅移除测试航点。最终三服务exit0/OOMfalse、容器/网络移除、卷保留。实际镜像与源码见../compose_runtime.lock.json，运行证据见../verification.md。
+The 2026-11-05 local run verified three-image builds, real sensor data through
+Cartographer `/map`, HTTP 200 responses and WebSocket map/JPEG delivery. Waypoint
+data survived Web container recreation. The run ended with application exit 0,
+no OOM, containers/networks removed and the volume retained.
 
-本轮静止，未做新的桌面浏览器/摇杆运动回归，不宣称整屋重建、真机、官方或学习者独立PASS。既有C032运动/完整网页证据保留其原范围，减少帮助检查与正式云端仍待。
+That local run was stationary; it does not establish whole-room exploration,
+real-robot behavior or an independent learner assessment. Later cloud joystick
+checks are recorded separately in [the audit](../GRADING_GUIDE_AUDIT.md).
+See [the runtime lock](../compose_runtime.lock.json) for local image/source identities.
