@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C++：给定程序路径单步观察",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${input:cppProgram}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb"
+    },
+    {
+      "name": "Python：观察当前文件",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "cppProgram",
+      "type": "promptString",
+      "description": "实际已构建 ELF 的 WSL 绝对路径"
+    }
+  ]
+}

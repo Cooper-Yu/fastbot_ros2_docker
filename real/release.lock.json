@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-09 Asia/Shanghai",
+  "repository": "cooper992/cooper12138-cp22",
+  "status": "published_and_remote_verified",
+  "platform": "linux/arm64",
+  "archive_sha256": "76a0d6638c58e8be05a0cca3777f990e93b808170fd0becbdd27227d2437d2a0",
+  "cp21_revision": "d58b5e103586314bca40626558acc82b4e40e299",
+  "driver_patch": "0002-consistent-sweep-timestamps.patch",
+  "images": [
+    {
+      "tag": "cooper992/cooper12138-cp22:fastbot-ros2-real",
+      "platform": "linux/arm64",
+      "native_image_id": "sha256:a6788b26e0190c3751ff3988559d3a566bb48ceeb5551caa110a15e8d4fd9142",
+      "loaded_image_id": "sha256:91d2048ad7f5bd80909e3b862e6485666c8816842cd6c18dcb66f90fb6fdd045",
+      "push_digest": "sha256:91d2048ad7f5bd80909e3b862e6485666c8816842cd6c18dcb66f90fb6fdd045",
+      "remote_image_id": "sha256:91d2048ad7f5bd80909e3b862e6485666c8816842cd6c18dcb66f90fb6fdd045",
+      "repo_digests": [
+        "cooper992/cooper12138-cp22@sha256:91d2048ad7f5bd80909e3b862e6485666c8816842cd6c18dcb66f90fb6fdd045"
+      ],
+      "rootfs": {
+        "Type": "layers",
+        "Layers": [
+          "sha256:28453be5ba7182cf839572413996637dd1ffa0fe02db825a6098dd22cf128352",
+          "sha256:67954a7c57434ea5ef215d406b53355ce5883aca2b975b2600f87cb848850b95",
+          "sha256:cc55872d442e697507f49943e8c8cd91cbccea249632cd659d56439d712f2137",
+          "sha256:cc2f3d112596f49f6ebe598b52e031840dab675168a3dc3dacfa13ed6fbd3506",
+          "sha256:4c007712b9645cc9dd5f1bd6a6a2b634d5b80c5d34b9bb5ab65dde1b0c9deb12",
+          "sha256:0f392e41af3b900cd6b5963e136ede592b24bd617a049a854e818e5bdbf8d256",
+          "sha256:50d6bdef19e4534ef4541e3a1c2610a030f00848eb1508c03f31ba510c6566f2",
+          "sha256:671fe482499907d257feb145413a5bfd03ecc0a1db8c343470cb94993baf91f8",
+          "sha256:392d885ec6bfe60acc560a6fbd4409b15ac06e724db7e78e24ebde5ad2369ffc",
+          "sha256:5f081ced599919187f30cfb88b96cba038eef1b1c238836295d50ac780521207",
+          "sha256:ca2bb08616d7b98fb2a32db97b61f96ac7d57976fce22ea2f031b57b52954eac",
+          "sha256:a43370984ff0fe03fc0d06bc11d0f0214ee55163fc12f5ca6a83b0e1f68d54d9",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:fc29a250ce07e793539dc7c5ab0c68200a6ad251672014691ad53525d57b450c",
+          "sha256:4601f71666ee75c2526e8a1fe3c0f089d3c1fdf5c7647dc96c87140493dc2589",
+          "sha256:e167a1fdc48d29f953c066c27fcce7a93e84594dbef3a318583bab914905607f"
+        ]
+      }
+    },
+    {
+      "tag": "cooper992/cooper12138-cp22:fastbot-ros2-slam-real",
+      "platform": "linux/arm64",
+      "native_image_id": "sha256:f59f5d5095a56596b8b271442eb68c3a5c7e4647c20d95f856f21b42430243e5",
+      "loaded_image_id": "sha256:29a9df7d13002d8e6af34430820e6952a201dd373967cccb98e551acb448f53b",
+      "push_digest": "sha256:29a9df7d13002d8e6af34430820e6952a201dd373967cccb98e551acb448f53b",
+      "remote_image_id": "sha256:29a9df7d13002d8e6af34430820e6952a201dd373967cccb98e551acb448f53b",
+      "repo_digests": [
+        "cooper992/cooper12138-cp22@sha256:29a9df7d13002d8e6af34430820e6952a201dd373967cccb98e551acb448f53b"
+      ],
+      "rootfs": {
+        "Type": "layers",
+        "Layers": [
+          "sha256:28453be5ba7182cf839572413996637dd1ffa0fe02db825a6098dd22cf128352",
+          "sha256:67954a7c57434ea5ef215d406b53355ce5883aca2b975b2600f87cb848850b95",
+          "sha256:cc55872d442e697507f49943e8c8cd91cbccea249632cd659d56439d712f2137",
+          "sha256:cc2f3d112596f49f6ebe598b52e031840dab675168a3dc3dacfa13ed6fbd3506",
+          "sha256:4c007712b9645cc9dd5f1bd6a6a2b634d5b80c5d34b9bb5ab65dde1b0c9deb12",
+          "sha256:0f392e41af3b900cd6b5963e136ede592b24bd617a049a854e818e5bdbf8d256",
+          "sha256:50d6bdef19e4534ef4541e3a1c2610a030f00848eb1508c03f31ba510c6566f2",
+          "sha256:671fe482499907d257feb145413a5bfd03ecc0a1db8c343470cb94993baf91f8",
+          "sha256:392d885ec6bfe60acc560a6fbd4409b15ac06e724db7e78e24ebde5ad2369ffc",
+          "sha256:5f081ced599919187f30cfb88b96cba038eef1b1c238836295d50ac780521207",
+          "sha256:ceed06404ea717f11d0b6b29463a4c8fc607861756110f9fe95f89b07c3e3028",
+          "sha256:e123f32e483e18bc500d708abadf1e94d2ba035b27caa4497129a4234feb54b4",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:48c4b1c0463b0f8dd4b60b219ac44d581940b72da64ce24de3a175cb2210b5ca",
+          "sha256:f6d005c4ce0ddc3b74139c540b5cccb8e933cb5105594db6d6b00e82acc5b44e",
+          "sha256:7b4a0d29be22be27988c5ac7f005a645e9808b9f66d6142d6e79d3ea2d85e94c"
+        ]
+      }
+    }
+  ],
+  "source_manifest": "source.lock.json",
+  "official_grading": "NOT_SUBMITTED"
+}

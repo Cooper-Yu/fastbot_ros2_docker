@@ -1,0 +1,161 @@
+{
+  "date": "2026-11-09 Asia/Shanghai",
+  "status": "FUNCTIONAL_VERIFIED",
+  "platform": "Pi Ubuntu22.04 aarch64/Humble",
+  "docker_engine_id": "51e86599-6325-49ef-a563-204617a8facc",
+  "before_boot_id": "9a0b4ae4-6f6b-4dea-a804-097c842812cb",
+  "after_boot_id": "1b0bc28f-4222-42df-8eb0-841a3ebeaca6",
+  "docker_enabled": "enabled",
+  "containers": [
+    {
+      "cid": "cfe656df5c1971a3363e8fc9731b880f8740fbd6f15183a413ea85fa3010053d",
+      "name": "/cp23-real-fastbot-ros2-real-1",
+      "native_image_id": "sha256:a6788b26e0190c3751ff3988559d3a566bb48ceeb5551caa110a15e8d4fd9142",
+      "started_after_powercycle": "2026-11-09T04:57:35.447615763Z",
+      "oom_killed": false,
+      "restart": "unless-stopped"
+    },
+    {
+      "cid": "0fb7beaf903c4f74301db0974818d99d3272e349e167f9f9a4b5b6982028192e",
+      "name": "/cp23-real-fastbot-ros2-slam-real-1",
+      "native_image_id": "sha256:f59f5d5095a56596b8b271442eb68c3a5c7e4647c20d95f856f21b42430243e5",
+      "started_after_powercycle": "2026-11-09T04:57:35.425139374Z",
+      "oom_killed": false,
+      "restart": "unless-stopped"
+    },
+    {
+      "cid": "308ce04cff32745b52867f82fa4297a8f8d6a56dbade1a128dc9a979d950d2e8",
+      "name": "/cp23-wsl-link-wsl-link-1",
+      "native_image_id": "sha256:628d05f5c1f0b3f6555d34bb243090c8bc62ceb5894e3c7e69d583a5e56d5bac",
+      "started_after_powercycle": "2026-11-09T04:57:35.277330541Z",
+      "oom_killed": false,
+      "restart": "unless-stopped"
+    }
+  ],
+  "external_environment": "Local WSL Ubuntu-22.04/Humble only; native RViz2 visually verified",
+  "after_powercycle": {
+    "counts": {
+      "scan": 14,
+      "image": 38,
+      "odom": 25,
+      "map": 3,
+      "tf": 164
+    },
+    "samples": {
+      "scan": {
+        "frame": "fastbot_laser_link",
+        "rays": 450,
+        "finite": 447,
+        "minimum": 0.3869999945163727
+      },
+      "image": {
+        "width": 320,
+        "height": 240,
+        "bytes": 230400,
+        "encoding": "rgb8"
+      },
+      "odom": {
+        "frame": "fastbot_odom",
+        "child": "fastbot_base_link",
+        "linear": 0.0,
+        "angular": 0.0
+      },
+      "map": {
+        "frame": "map",
+        "width": 85,
+        "height": 101,
+        "known": 3942
+      }
+    },
+    "transforms": [
+      [
+        "fastbot_base_link",
+        "fastbot_left_wheel"
+      ],
+      [
+        "fastbot_base_link",
+        "fastbot_right_wheel"
+      ],
+      [
+        "fastbot_odom",
+        "fastbot_base_link"
+      ],
+      [
+        "map",
+        "fastbot_odom"
+      ]
+    ],
+    "command_publishers": [],
+    "passed": true,
+    "scope": "stationary hardware data and mapping; no motion command published"
+  },
+  "reusable_viewer": {
+    "counts": {
+      "scan": 7,
+      "image": 15,
+      "odom": 14,
+      "map": 3,
+      "tf": 117
+    },
+    "samples": {
+      "scan": {
+        "frame": "fastbot_laser_link",
+        "rays": 452,
+        "finite": 451,
+        "minimum": 0.3370000123977661
+      },
+      "image": {
+        "width": 320,
+        "height": 240,
+        "bytes": 230400,
+        "encoding": "rgb8"
+      },
+      "odom": {
+        "frame": "fastbot_odom",
+        "child": "fastbot_base_link",
+        "linear": 0.0,
+        "angular": 0.0
+      },
+      "map": {
+        "frame": "map",
+        "width": 86,
+        "height": 103,
+        "known": 4315
+      }
+    },
+    "transforms": [
+      [
+        "fastbot_base_link",
+        "fastbot_left_wheel"
+      ],
+      [
+        "fastbot_base_link",
+        "fastbot_right_wheel"
+      ],
+      [
+        "fastbot_odom",
+        "fastbot_base_link"
+      ],
+      [
+        "map",
+        "fastbot_odom"
+      ]
+    ],
+    "command_publishers": [],
+    "passed": true,
+    "scope": "stationary hardware data and mapping; no motion command published"
+  },
+  "bag": {
+    "duration_seconds": 11.750236622,
+    "messages": 2728,
+    "scan": 118,
+    "odom": 117,
+    "map": 13,
+    "tf": 2479,
+    "tf_static": 1
+  },
+  "learning_independent_check": "SKIPPED_BY_USER",
+  "official_grading": "NOT_SUBMITTED",
+  "model": "CP21 approximate model; extrinsics not recalibrated",
+  "motion_commands_published_by_this_run": false
+}

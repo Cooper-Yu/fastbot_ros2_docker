@@ -1,0 +1,136 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "工程：只检查规范",
+      "type": "process",
+      "command": "python3",
+      "args": [
+        "tools/check_style.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "工程：生成 Doxygen",
+      "type": "process",
+      "command": "doxygen",
+      "args": [
+        "docs/Doxyfile"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "fastbot_bringup: clang-tidy (Problems)",
+      "type": "process",
+      "command": "clang-tidy",
+      "args": [
+        "${file}",
+        "-p",
+        "${input:workspaceRoot}/build/fastbot_bringup",
+        "--use-color=false"
+      ],
+      "problemMatcher": {
+        "owner": "training-clang-tidy-fastbot_bringup",
+        "source": "clang-tidy (task)",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^(.+):(\\d+):(\\d+): (warning|error): (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "fastbot_bringup: documentation (Problems)",
+      "type": "process",
+      "command": "doxygen",
+      "args": [
+        "docs/Doxyfile.check"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": {
+        "owner": "training-doxygen-fastbot_bringup",
+        "source": "Doxygen (task)",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^(.+):(\\d+): (warning|error): (.*)$",
+          "file": 1,
+          "line": 2,
+          "severity": 3,
+          "message": 4
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "工程：构建当前包",
+      "type": "process",
+      "command": "colcon",
+      "args": [
+        "build",
+        "--packages-select",
+        "fastbot_bringup",
+        "--cmake-args",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "options": {
+        "cwd": "${input:workspaceRoot}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "工程：测试当前包",
+      "type": "process",
+      "command": "colcon",
+      "args": [
+        "test",
+        "--packages-select",
+        "fastbot_bringup"
+      ],
+      "options": {
+        "cwd": "${input:workspaceRoot}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "工程：查看测试结果",
+      "type": "process",
+      "command": "colcon",
+      "args": [
+        "test-result",
+        "--verbose"
+      ],
+      "options": {
+        "cwd": "${input:workspaceRoot}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "workspaceRoot",
+      "type": "promptString",
+      "description": "已加载正确 ROS 环境的实际 colcon workspace 绝对路径"
+    }
+  ]
+}

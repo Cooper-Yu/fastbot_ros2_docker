@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package format="3">
+  <name>fastbot_description</name>
+  <version>0.1.0</version>
+  <description>FastBot delegated integration for CP21.</description>
+  <maintainer email="yg-fastbot@todo.todo">yg-fastbot</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+  <exec_depend>ament_index_python</exec_depend>
+</package>

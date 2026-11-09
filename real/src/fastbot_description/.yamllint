@@ -1,0 +1,20 @@
+# YAML 检查：继承默认检查，只覆盖明确约定。
+extends: default
+ignore: |
+  build/
+  install/
+  log/
+  output/
+rules:
+  indentation:
+    spaces: 2
+    indent-sequences: true
+  # 长行给警告；不会截断字符串或改参数含义。
+  line-length:
+    max: 100
+    level: warning
+  # ROS 参数文件允许省略开头的 ---。
+  document-start: disable
+  truthy:
+    allowed-values: ['true', 'false']
+  key-duplicates: enable

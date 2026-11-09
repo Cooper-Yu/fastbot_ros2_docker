@@ -1,0 +1,54 @@
+name: cp23-real
+x-runtime: &runtime
+  network_mode: host
+  user: "1000:1000"
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  restart: unless-stopped
+  stop_signal: SIGINT
+  stop_grace_period: 15s
+  cpus: 1.5
+  mem_limit: 768m
+  pids_limit: 256
+  tmpfs:
+    - /tmp:rw,nosuid,nodev,size=256m,mode=1777
+  environment:
+    HOME: /tmp
+    ROS_LOG_DIR: /tmp/ros-logs
+    ROS_DOMAIN_ID: "${ROS_DOMAIN_ID:-0}"
+    ROS_LOCALHOST_ONLY: "0"
+    RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+  labels:
+    codex.owner: cp23-real-fastbot
+    codex.project: checkpoint23-docker-for-robotics
+    codex.run: "${CP23_RUN_ID:?Set run id in real/.env}"
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: "2"
+services:
+  fastbot-ros2-real:
+    <<: *runtime
+    platform: linux/arm64
+    image: cooper992/cooper12138-cp22:fastbot-ros2-real
+    build:
+      context: ..
+      dockerfile: real/Dockerfile.real
+      args:
+        ROS_BASE: "${ROS_BASE:?Set ARM64 base digest in real/.env}"
+    group_add: ["20", "44"]
+    devices:
+      - "${MOTOR_DEVICE:?Set motor by-id path}:/dev/fastbot_motor"
+      - "${LIDAR_DEVICE:?Set lidar by-id path}:/dev/fastbot_lidar"
+      - "${CAMERA_DEVICE:-/dev/video0}:/dev/video0"
+  fastbot-ros2-slam-real:
+    <<: *runtime
+    platform: linux/arm64
+    image: cooper992/cooper12138-cp22:fastbot-ros2-slam-real
+    build:
+      context: ..
+      dockerfile: real/Dockerfile.slam-real
+      args:
+        ROS_BASE: "${ROS_BASE:?Set ARM64 base digest in real/.env}"

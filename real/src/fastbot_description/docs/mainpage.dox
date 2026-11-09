@@ -1,0 +1,19 @@
+/**
+ * @mainpage fastbot_description 工程导航
+ * @brief 从职责与流程进入代码、规范和测试。
+ *
+ * 模板已准备；核心功能与行为验证尚未完成。
+ *
+ * @section navigation 快速入口
+ * - @ref md_README "包职责、输入输出和运行约定"
+ * - @ref md_docs_flow "数据与控制流程"
+ * - @ref engineering_navigation "类与方法的注释约定"
+ * - @ref md_docs_tooling "排版、规范、调试与任务入口"
+ * - @ref md_docs_style_profile "统一源码排版与可读性"
+ * - @ref md_test_README "测试用例与验证入口"
+ * - @ref md_docs_TEMPLATE_SOURCES "模板来源与第三方许可"
+ *
+ * @section evidence 学习证据
+ * 详细尝试、审阅与验证留在对应 Section/Checkpoint 的 WSL 记录中。
+ * 这里提供工程导航，不声明学习者独立完成或课程 PASS。
+ */

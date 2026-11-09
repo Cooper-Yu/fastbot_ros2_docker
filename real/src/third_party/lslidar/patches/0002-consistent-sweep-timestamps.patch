@@ -1,0 +1,39 @@
+--- a/lslidar_driver/src/lslidar_driver.cc
++++ b/lslidar_driver/src/lslidar_driver.cc
+@@ -778,9 +778,11 @@
+ 					scan_points_[k].intensity = 0;
+ 				}
+ 				pre_time_ = time_;
++				time_ = get_clock()->now();
+ 				lock.unlock();
+-				pubscan_cond_.notify_one();
+-				time_ = get_clock()->now();
++				// CP23: the first boundary starts a sweep; publish complete intervals only.
++				if (pre_time_.nanoseconds() > 0)
++					pubscan_cond_.notify_one();
+ 			}
+ 			else
+ 			{
+@@ -935,9 +937,11 @@
+ 					scan_points_[k].intensity = 0;
+ 				}
+ 				pre_time_ = time_;
++				time_ = get_clock()->now();
+ 				lock.unlock();
+-				pubscan_cond_.notify_one();
+-				time_ = get_clock()->now();
++				// CP23: the first boundary starts a sweep; publish complete intervals only.
++				if (pre_time_.nanoseconds() > 0)
++					pubscan_cond_.notify_one();
+ 			}
+ 			else
+ 			{
+@@ -1124,7 +1128,7 @@
+ 					}
+ 					else
+ 					{
+-						scan->header.stamp = this->now(); // timestamp will obtained from sweep data stamp
++						scan->header.stamp = start_time; // CP23: timestamp of the first ray.
+ 					}
+ 
+ 					if (angle_able_max > 360)

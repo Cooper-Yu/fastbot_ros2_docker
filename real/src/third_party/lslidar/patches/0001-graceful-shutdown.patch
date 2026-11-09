@@ -1,0 +1,94 @@
+diff --git a/third_party/lslidar/lslidar_driver/include/lslidar_driver/lslidar_driver.h b/third_party/lslidar/lslidar_driver/include/lslidar_driver/lslidar_driver.h
+index 1ec59d0..20513d6 100644
+--- a/third_party/lslidar/lslidar_driver/include/lslidar_driver/lslidar_driver.h
++++ b/third_party/lslidar/lslidar_driver/include/lslidar_driver/lslidar_driver.h
+@@ -84,7 +84,7 @@ private:
+     int receive_data(unsigned char *packet_bytes);
+     int getScan(std::vector<ScanPoint> &points, rclcpp::Time &scan_time, float &scan_duration);
+ 
+-    boost::thread *pubscan_thread_ ;
++    boost::thread *pubscan_thread_ = nullptr;
+     boost::shared_ptr<Input> msop_input_;
+     boost::mutex mutex_; 
+     boost::mutex pubscan_mutex_;
+diff --git a/third_party/lslidar/lslidar_driver/src/lslidar_driver.cc b/third_party/lslidar/lslidar_driver/src/lslidar_driver.cc
+index cdb2e08..2180952 100644
+--- a/third_party/lslidar/lslidar_driver/src/lslidar_driver.cc
++++ b/third_party/lslidar/lslidar_driver/src/lslidar_driver.cc
+@@ -34,15 +34,10 @@
+ namespace lslidar_driver
+ {
+ 
+-	static void my_hander(int sig)
+-	{
+-		printf("sig: %d", sig);
+-		abort();
+-	}
+ 	LslidarDriver::LslidarDriver() : LslidarDriver(rclcpp::NodeOptions()) {}
+ 	LslidarDriver::LslidarDriver(const rclcpp::NodeOptions &options) : Node("lslidar_driver_node", options), diagnostics(this)
+ 	{
+-		signal(SIGINT, my_hander);
++		// CP21: retain the ROS SIGINT handler installed by rclcpp::init.
+ 
+ 		if (!this->initialize())
+ 			RCLCPP_ERROR(this->get_logger(), "Could not initialize the driver...");
+@@ -52,7 +47,13 @@ namespace lslidar_driver
+ 
+ 	LslidarDriver::~LslidarDriver()
+ 	{
+-		return;
++		if (pubscan_thread_ != nullptr) {
++			pubscan_thread_->interrupt();
++			pubscan_cond_.notify_all();
++			pubscan_thread_->join();
++			delete pubscan_thread_;
++			pubscan_thread_ = nullptr;
++		}
+ 	}
+ 
+ 	bool LslidarDriver::loadParameters()
+@@ -965,6 +966,10 @@ namespace lslidar_driver
+ 				pubscan_cond_.wait(lock);
+ 				wait_for_wake = false;
+ 			}
++			boost::this_thread::interruption_point();
++			if (!rclcpp::ok()) {
++				return;
++			}
+ 			if (lidar_name == "N10_P" || lidar_name == "M10_DOUBLE")
+ 			{
+ 				if (pubScan)
+diff --git a/third_party/lslidar/lslidar_driver/src/lslidar_driver_node.cc b/third_party/lslidar/lslidar_driver/src/lslidar_driver_node.cc
+index 6a89f99..6eef7ed 100644
+--- a/third_party/lslidar/lslidar_driver/src/lslidar_driver_node.cc
++++ b/third_party/lslidar/lslidar_driver/src/lslidar_driver_node.cc
+@@ -26,10 +26,25 @@ int main(int argc, char* argv[])
+   rclcpp::init(argc, argv);
+   auto node = std::make_shared<lslidar_driver::LslidarDriver>();
+   
+-  while (rclcpp::ok() && node->polling()) {
+-        rclcpp::spin_some(node);
++  // Keep one executor: spin_some(node) otherwise constructs a fresh executor
++  // after polling(), which can race the signal handler's context shutdown.
++  rclcpp::executors::SingleThreadedExecutor executor;
++  executor.add_node(node);
++  try {
++    while (rclcpp::ok() && node->polling()) {
++      if (!rclcpp::ok()) {
++        break;
++      }
++      executor.spin_some();
++    }
++  } catch (const rclcpp::exceptions::RCLError &) {
++    if (rclcpp::ok()) {
++      throw;
++    }
++    // A concurrent shutdown invalidated a ROS operation; leave normally.
++  }
++  if (rclcpp::ok()) {
++    rclcpp::shutdown();
+   }
+-  //rclcpp::spin(node);
+-  rclcpp::shutdown();
+   return 0;
+ }

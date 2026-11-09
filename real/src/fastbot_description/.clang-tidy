@@ -1,0 +1,18 @@
+# 审阅规则：函数规模、命名；默认只给诊断，不自动重命名或拆分。
+Checks: '-*,readability-function-size,readability-identifier-naming'
+# 数值和命名都是项目约定；已有工程优先遵循其规范。
+CheckOptions:
+  # 函数规模：60 行、4 层嵌套；列宽与语句数另行管理。
+  - key: readability-function-size.LineThreshold
+    value: '60'
+  - key: readability-function-size.NestingThreshold
+    value: '4'
+  # 命名：ImageProcessor / compute_error / target_distance_。
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberSuffix
+    value: _

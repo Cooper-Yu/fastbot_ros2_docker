@@ -1,0 +1,28 @@
+name: cp23-wsl-link
+services:
+  wsl-link:
+    image: eclipse/zenoh-bridge-ros2dds:1.10.1
+    platform: linux/arm64
+    network_mode: host
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    stop_signal: SIGINT
+    cpus: 0.5
+    mem_limit: 256m
+    pids_limit: 64
+    tmpfs: ["/tmp:rw,nosuid,nodev,size=32m,mode=1777"]
+    environment:
+      HOME: /tmp
+      ROS_DISTRO: humble
+    entrypoint: ["/zenoh-bridge-ros2dds"]
+    command: ["router", "-d", "0", "-l", "tcp/0.0.0.0:17447", "--no-multicast-scouting"]
+    labels:
+      codex.owner: cp23-real-fastbot
+      codex.project: checkpoint23-docker-for-robotics
+      codex.run: "${CP23_RUN_ID:?Set run id in real/.env}"
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: "2"}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/Lslidar/Lslidar_ROS2_driver",
+  "branch": "N10_V1.0",
+  "commit": "bef9d813d108c4dde2523b9d20f76e4936016ee0",
+  "archive_sha256": "db3ecc3059e7fbb08bc62706025cdbf9057cbe1a962e9a3cc1b19b3149912989",
+  "source_modifications": [
+    "CP21 patch 0001: retain rclcpp SIGINT handler, interrupt/join scan publisher, reuse one executor and handle the context-shutdown race."
+  ],
+  "license": "GPL-3.0 per upstream package metadata; upstream archive has no standalone license file; standard text supplied.",
+  "modified_source_sha256": {
+    "lslidar_driver/src/lslidar_driver.cc": "2d6172067499af2b7fd1959b511a12273ca9530e3d825e95700a3c5143fd1d7b",
+    "lslidar_driver/include/lslidar_driver/lslidar_driver.h": "d028f0f1af089c824a01be0625692704bc72284fd30e6f5bb8c29f09f0cecd6e",
+    "lslidar_driver/src/lslidar_driver_node.cc": "2f61b696b0dea9d5c299457555528166cf94b73ef867089881787f99181a1326"
+  }
+}

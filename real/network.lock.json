@@ -1,0 +1,31 @@
+{
+  "official_image": "eclipse/zenoh-bridge-ros2dds:1.10.1",
+  "official_index_digest": "sha256:74fae6a9d4f449c53d1ee6f0faaca97d01c1e68dfcafd785b657f01907157d22",
+  "pi_loaded_image_id": "sha256:628d05f5c1f0b3f6555d34bb243090c8bc62ceb5894e3c7e69d583a5e56d5bac",
+  "pi_rootfs": {
+    "Type": "layers",
+    "Layers": [
+      "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+      "sha256:31cbb0cfe2c5c6e05a75b5d88d4abc68cc6a40e46a22625e3168f743d305d6e3",
+      "sha256:e459a6d82af4464cf5897d9279bc14f77365fcc5fc3d5db58d4104fd1dd75448",
+      "sha256:87826575b1177d9114942360e21a0a6b874db5e57c9e6762f366359e82d2e93c",
+      "sha256:27f125303bbd5741858b74758f55adc3ffe793675c753193e48e2300cbb5fb03",
+      "sha256:b676f68706770ebb8b88c381d75a73df86bf0e350ceb649955c9c4905bbdbd04",
+      "sha256:f08ac8bc4fe47a10ee32aaf84fa5daf4c979cf4974f20084bc428467393d794c",
+      "sha256:58265f67add534f755432386485bf56498445461410dc01fcba77c5434006eed"
+    ]
+  },
+  "pi_filtered_export_matches_official_arm64": true,
+  "ros_distro": "humble",
+  "robot_domain": 0,
+  "wsl_domain": 194,
+  "tcp_port": 17447,
+  "native_amd64_sha256": {
+    "zenoh-bridge-ros2dds": "add0fbfe3b6f22b5c2ddaa4dadaa366bd540e43c5aa73cd35a3b28aa3dc4d47f",
+    "ld-musl-x86_64.so.1": "38d022ce7425ff105ccfb53598f606e6e5f5f0a34bfbc793d65e6f34c9d72806",
+    "libgcc_s.so.1": "5ea51dd885b6fc691eccc569d0bda739204204f6161e97075b26dc9c050d1ca1"
+  },
+  "verified": "WSL real topics, RViz2, rosbag2 and actual power-cycle recovery",
+  "scope": "Optional network support; core Task2 remains two application images",
+  "official_source": "https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds"
+}

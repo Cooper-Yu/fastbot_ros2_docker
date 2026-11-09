@@ -1,0 +1,10 @@
+FastBot CP21
+Copyright 2026 Yu Ge.
+
+The student-authored serial_motor, serial_motor_msgs, fastbot_bringup and
+fastbot_description code is provided under Apache License 2.0.
+This does not relicense third-party code or assets. third_party/lslidar retains
+its upstream GPL declarations and license text; its local shutdown patch is
+distributed under the same upstream terms. Engineering-template theme assets
+retain their adjacent LICENSE and attribution files. See third_party/lslidar/
+UPSTREAM.json and each package's docs/TEMPLATE_SOURCES.md for provenance.

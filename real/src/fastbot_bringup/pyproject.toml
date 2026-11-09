@@ -1,0 +1,20 @@
+# 目标 ROS 环境：humble；Python 目标由生成器设置。
+# 若项目已有 pyproject.toml，只合并相关节；不要覆盖包元数据。
+[tool.ruff]
+line-length = 100
+indent-width = 4
+target-version = "py310"
+extend-exclude = ["build", "install", "log", "output", "docs/_theme"]
+
+# 检查错误与命名，并用语句/分支数量辅助审阅函数规模。
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "N", "PLR0912", "PLR0915"]
+
+[tool.ruff.lint.pylint]
+max-statements = 50
+max-branches = 12
+
+# 排版与 lint 各有职责；这里采用单引号、4 空格、100 列。
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"

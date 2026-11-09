@@ -1,0 +1,15 @@
+/**
+ * @page engineering_navigation serial_motor 工程导航
+ * @brief 包职责、实现流程、规范与测试入口。
+ *
+ * @section source_entries 查阅入口
+ * - 包级说明：README.md
+ * - 设计流程：docs/flow.md
+ * - 工具与命令：docs/tooling.md
+ * - 测试：test/README.md
+ *
+ * @section annotation_convention 注释约定
+ * 类：职责、依赖与状态；方法：职责、参数/单位、返回值和副作用。
+ * 方法内写阶段边界与原因；需进入文档时使用 Doxygen 文档注释。
+ * 核心接口与实现由学习者完成，模板不预填实现或验证结论。
+ */

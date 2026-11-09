@@ -1,0 +1,16 @@
+/**:
+  ros__parameters:
+    frame_id: fastbot_laser_link
+    lidar_name: N10
+    interface_selection: serial
+    serial_port_: /dev/ttyACM0
+    scan_topic: scan
+    angle_disable_min: 0.0
+    angle_disable_max: 0.0
+    min_range: 0.1
+    max_range: 12.0
+    use_gps_ts: false
+    pubScan: true
+    pubPointCloud2: false
+    high_reflection: false
+    compensation: false

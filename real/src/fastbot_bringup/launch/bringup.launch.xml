@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_name" default="fastbot"/>
+  <arg name="serial_enabled" default="true"/>
+  <arg name="serial_port" default=""/>
+  <arg name="lidar_enabled" default="true"/>
+  <arg name="camera_enabled" default="true"/>
+  <arg name="lidar_port" default=""/>
+  <arg name="camera_device" default="/dev/video0"/>
+  <include file="$(find-pkg-share fastbot_bringup)/launch/drivers.launch.py">
+    <arg name="robot_name" value="$(var robot_name)"/>
+    <arg name="serial_enabled" value="$(var serial_enabled)"/>
+    <arg name="serial_port" value="$(var serial_port)"/>
+    <arg name="lidar_enabled" value="$(var lidar_enabled)"/>
+    <arg name="camera_enabled" value="$(var camera_enabled)"/>
+    <arg name="lidar_port" value="$(var lidar_port)"/>
+    <arg name="camera_device" value="$(var camera_device)"/>
+  </include>
+</launch>

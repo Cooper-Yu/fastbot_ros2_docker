@@ -1,0 +1,13 @@
+# 基础书写规则；具体排版仍由对应 formatter 完成。
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+# Python 使用 PEP 8 的 4 空格缩进。
+[*.py]
+indent_size = 4
